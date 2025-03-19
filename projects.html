@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - My Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md fixed w-full top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="index.html" class="text-2xl font-bold text-blue-600">Billel Hut</a>
+                <ul class="hidden md:flex space-x-6">
+                    <li><a href="index.html" class="text-gray-700 hover:text-blue-600">Home</a></li>
+                    <li><a href="about.html" class="text-gray-700 hover:text-blue-600">About</a></li>
+                    <li><a href="projects.html" class="text-gray-700 hover:text-blue-600">Projects</a></li>
+                    <li><a href="contact.html" class="text-gray-700 hover:text-blue-600">Contact</a></li>
+                </ul>
+                <button id="menu-btn" class="md:hidden focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Projects Section -->
+    <section class="max-w-6xl mx-auto py-20 px-4">
+        <h1 class="text-5xl font-bold text-center mb-12">My Projects</h1>
+
+        <!-- Games Section -->
+        <div>
+            <h2 class="text-3xl font-bold mb-6 text-center text-blue-600">🎮 Games</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Game 1 -->
+                <div class="bg-white shadow-md rounded-lg p-6">
+                    <img src="Images/PongGame.png" alt="Game 1" class="rounded-lg w-full mb-4">
+                    <h3 class="text-2xl font-bold">Pongster</h3>
+                    <p class="text-gray-600">A game like pong but with a twist.</p>
+                    <a href="#" class="mt-4 block bg-blue-600 text-white py-2 px-4 rounded text-center">Play Now</a>
+                </div>
+
+                <div class="bg-white shadow-md rounded-lg p-6">
+                    <img src="game1.png" alt="Game 1" class="rounded-lg w-full mb-4">
+                    <h3 class="text-2xl font-bold">Game Title</h3>
+                    <p class="text-gray-600">Short description of the game.</p>
+                    <a href="#" class="mt-4 block bg-blue-600 text-white py-2 px-4 rounded text-center">Play Now</a>
+                </div>
+
+                <!-- Game 3 -->
+                <div class="bg-white shadow-md rounded-lg p-6">
+                    <img src="game2.png" alt="Game 2" class="rounded-lg w-full mb-4">
+                    <h3 class="text-2xl font-bold">Another Game</h3>
+                    <p class="text-gray-600">Short description of this game.</p>
+                    <a href="#" class="mt-4 block bg-blue-600 text-white py-2 px-4 rounded text-center">Play Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Websites Section -->
+        <div class="mt-16">
+            <h2 class="text-3xl font-bold mb-6 text-center text-green-600">🌍 Websites</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Website 1 -->
+                <div class="bg-white shadow-md rounded-lg p-6">
+                    <img src="website1.png" alt="Website 1" class="rounded-lg w-full mb-4">
+                    <h3 class="text-2xl font-bold">Website Name</h3>
+                    <p class="text-gray-600">Short description of the website.</p>
+                    <a href="#" class="mt-4 block bg-green-600 text-white py-2 px-4 rounded text-center">Visit</a>
+                </div>
+
+                <div class="bg-white shadow-md rounded-lg p-6">
+                    <img src="website1.png" alt="Website 1" class="rounded-lg w-full mb-4">
+                    <h3 class="text-2xl font-bold">Website Name</h3>
+                    <p class="text-gray-600">Short description of the website.</p>
+                    <a href="#" class="mt-4 block bg-green-600 text-white py-2 px-4 rounded text-center">Visit</a>
+                </div>
+
+                <!-- Website 3 -->
+                <div class="bg-white shadow-md rounded-lg p-6">
+                    <img src="website2.png" alt="Website 2" class="rounded-lg w-full mb-4">
+                    <h3 class="text-2xl font-bold">Another Website</h3>
+                    <p class="text-gray-600">Short description of this website.</p>
+                    <a href="#" class="mt-4 block bg-green-600 text-white py-2 px-4 rounded text-center">Visit</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-6 mt-16">
+        <p>&copy; 2025 My Website. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
