@@ -6,19 +6,18 @@
     <title>About - My Website</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 text-gray-900">
-
+<body class="bg-gradient-to-r from-gray-500 via-gray-600 to-gray-700 text-gray-900">
 
     <!-- Navbar -->
-    <nav class="bg-white shadow-md fixed w-full top-0 z-50">
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between items-center py-4">
-                <a href="index.html" class="text-2xl font-bold text-blue-600">Billel Hut</a>
-                <ul class="hidden md:flex space-x-6">
-                    <li><a href="index.html" class="text-gray-700 hover:text-blue-600">Home</a></li>
-                    <li><a href="about.html" class="text-gray-700 hover:text-blue-600">About</a></li>
-                    <li><a href="projects.html" class="text-gray-700 hover:text-blue-600">Projects</a></li>
-                    <li><a href="contact.html" class="text-gray-700 hover:text-blue-600">Contact</a></li>
+                <a href="index.html" class="text-3xl font-extrabold text-blue-600 transition-transform transform hover:scale-110">Billel Hut</a>
+                <ul class="hidden md:flex space-x-8">
+                    <li><a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors">Home</a></li>
+                    <li><a href="about.html" class="text-gray-700 hover:text-blue-600 transition-colors">About</a></li>
+                    <li><a href="projects.html" class="text-gray-700 hover:text-blue-600 transition-colors">Projects</a></li>
+                    <li><a href="contact.html" class="text-gray-700 hover:text-blue-600 transition-colors">Contact</a></li>
                 </ul>
                 <button id="menu-btn" class="md:hidden focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -40,8 +39,11 @@
     <!-- About Page Content -->
     <section class="flex h-screen items-center justify-center text-center px-4">
         <div>
-            <h1 class="text-5xl font-bold mb-4">About Me</h1>
-            <p class="text-lg text-gray-600 mb-6">This is the about page where I describe myself.</p>
+            <h1 class="text-5xl font-extrabold mb-4 text-white">About Me</h1>
+            <p class="text-lg text-gray-300 mb-6">Welcome to my about page! Here's where I tell you a bit about myself and what I do.</p>
+            <p class="text-gray-200 mb-8">
+                I'm passionate about game development and technology. I've been learning and experimenting with different tools, and I am excited to build amazing games. Whether it's through creating immersive worlds in Unity or designing captivating gameplay mechanics, I'm always looking to grow and challenge myself.
+            </p>
             <a href="index.html" class="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition">
                 Back to Home
             </a>
@@ -50,7 +52,7 @@
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white text-center py-6 mt-16">
-        <p>&copy; 2025 My Website. All Rights Reserved.</p>
+        <p class="text-sm">&copy; 2025 My Website. All Rights Reserved.</p>
     </footer>
 
     <script src="script.js"></script>
