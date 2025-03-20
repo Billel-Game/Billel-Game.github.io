@@ -8,8 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-900 text-gray-300">
-
+<body class="bg-gray-900 text-gray-300 flex flex-col min-h-screen">
+    
     <!-- Navbar -->
     <nav class="bg-gray-800 shadow-lg fixed w-full top-0 z-50 h-16 flex items-center">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center w-full">
@@ -39,10 +39,9 @@
         </ul>
     </div>
 
-
     <!-- About Section -->
-    <section class="bg-gradient-to-r from-teal-500 to-blue-500 py-20 text-center text-white">
-        <div class="max-w-4xl mx-auto">
+    <section class="flex-grow bg-gradient-to-r from-teal-500 to-blue-500 py-20 text-center text-white">
+        <div class="max-w-4xl mx-auto px-6">
             <h2 class="text-4xl font-extrabold mb-6">About Me</h2>
             <p class="text-xl mb-8">Hi, I'm Billel! I'm a passionate developer who loves creating innovative games and websites. My mission is to combine creativity and technology to create amazing experiences for users.</p>
             <p class="text-lg">With a background in game development and web design, I focus on building fun and interactive projects that push the boundaries of what's possible. I'm always learning new skills and striving to improve my craft.</p>
@@ -50,11 +49,15 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white text-center py-6 mt-16">
-        <p class="text-sm">&copy; 2025 Billel Hut. All Rights Reserved.</p>
-    </footer>
+<footer class="bg-gray-900 text-white text-center py-6 mt-auto">
+    <p class="text-sm">&copy; 2025 Billel Hut. All Rights Reserved.</p>
+</footer>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById("menu-btn").addEventListener("click", function() {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+    </script>
 
 </body>
 
