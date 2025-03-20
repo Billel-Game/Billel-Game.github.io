@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShatterZone - Billel Hut</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-gray-300">
+    
+    <!-- Navbar -->
+    <nav class="bg-gray-800 shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-extrabold text-white hover:text-blue-500 transition">Billel Hut</a>
+            <ul class="hidden md:flex space-x-6">
+                <li><a href="index.html" class="text-white hover:text-blue-500 transition">Home</a></li>
+                <li><a href="about.html" class="text-white hover:text-blue-500 transition">About</a></li>
+                <li><a href="projects.html" class="text-white hover:text-blue-500 transition">Projects</a></li>
+                <li><a href="index.html#contact" class="text-white hover:text-blue-500 transition">Contact</a></li>
+            </ul>
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden bg-gray-800 text-white text-center hidden">
+        <ul class="space-y-4 py-4">
+            <li><a href="index.html" class="hover:text-blue-500 transition">Home</a></li>
+            <li><a href="about.html" class="hover:text-blue-500 transition">About</a></li>
+            <li><a href="projects.html" class="hover:text-blue-500 transition">Projects</a></li>
+            <li><a href="index.html#contact" class="hover:text-blue-500 transition">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Game Section -->
+    <section class="flex items-center justify-center min-h-screen px-4">
+        <div class="w-full max-w-7xl mx-auto p-6 bg-gray-800 shadow-lg rounded-lg">
+            <h1 class="text-4xl font-extrabold text-white text-center mb-6">ShatterZone</h1>
+            <iframe 
+                frameborder="0" 
+                src="https://itch.io/embed-upload/11945486?color=333333" 
+                allowfullscreen 
+                class="w-full h-[80vh] rounded-lg">
+            </iframe>
+            <p class="text-center text-gray-400 mt-4">Play <a href="https://batfoobies.itch.io/shatterzone" class="text-blue-500 hover:text-blue-400 transition">ShatterZone on itch.io</a></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white text-center py-6 mt-16">
+        <p class="text-sm">&copy; 2025 Billel Hut. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
