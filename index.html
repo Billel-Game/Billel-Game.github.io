@@ -11,34 +11,33 @@
 <body class="bg-gray-900 text-gray-300">
 
     <!-- Navbar -->
-<!-- Navbar -->
-<nav class="bg-gray-800 shadow-lg fixed w-full top-0 z-50">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="index.html" class="text-3xl font-extrabold text-white hover:text-blue-500 transition">Billel Hut</a>
-        <ul class="hidden md:flex space-x-6">
-            <li><a href="index.html" class="text-white hover:text-blue-500 transition">Home</a></li>
-            <li><a href="about.html" class="text-white hover:text-blue-500 transition">About</a></li>
-            <li><a href="projects.html" class="text-white hover:text-blue-500 transition">Projects</a></li>
-            <li><a href="index.html#contact" class="text-white hover:text-blue-500 transition">Contact</a></li>
+    <nav class="bg-gray-800 shadow-lg fixed w-full top-0 z-50 h-16 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center w-full">
+            <a href="index.html" class="text-3xl font-extrabold text-white hover:text-blue-500 transition">Billel Hut</a>
+            <ul class="hidden md:flex space-x-6">
+                <li><a href="index.html" class="text-white hover:text-blue-500 transition">Home</a></li>
+                <li><a href="about.html" class="text-white hover:text-blue-500 transition">About</a></li>
+                <li><a href="projects.html" class="text-white hover:text-blue-500 transition">Projects</a></li>
+                <li><a href="index.html#contact" class="text-white hover:text-blue-500 transition">Contact</a></li>
+            </ul>
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden bg-gray-800 text-white text-center hidden absolute top-16 left-0 right-0 shadow-lg">
+        <ul class="space-y-4 py-4">
+            <li><a href="index.html" class="hover:text-blue-500 transition">Home</a></li>
+            <li><a href="about.html" class="hover:text-blue-500 transition">About</a></li>
+            <li><a href="projects.html" class="hover:text-blue-500 transition">Projects</a></li>
+            <li><a href="index.html#contact" class="hover:text-blue-500 transition">Contact</a></li>
         </ul>
-        <!-- Mobile Menu Button -->
-        <button id="menu-btn" class="md:hidden text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-        </button>
     </div>
-</nav>
-
-<!-- Mobile Menu -->
-<div id="mobile-menu" class="md:hidden bg-gray-800 text-white text-center hidden">
-    <ul class="space-y-4 py-4">
-        <li><a href="index.html" class="hover:text-blue-500 transition">Home</a></li>
-        <li><a href="about.html" class="hover:text-blue-500 transition">About</a></li>
-        <li><a href="projects.html" class="hover:text-blue-500 transition">Projects</a></li>
-        <li><a href="index.html#contact" class="hover:text-blue-500 transition">Contact</a></li>
-    </ul>
-</div>
 
 
     <!-- Hero Section -->
