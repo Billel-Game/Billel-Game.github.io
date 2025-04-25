@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bingo Board</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            groningenGreen: '#00a859',
+            groningenWhite: '#ffffff',
+            groningenGray: '#e5e7eb',
+            groningenDark: '#1f2937'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .groningen-flag {
+      background-image: url('flag.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: black;
+      border: 2px solid black;
+    }
+    .clicked {
+      outline: 3px solid #00a859;
+      filter: brightness(0.85);
+    }
+    .groningen-flag span {
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.375rem;
+      display: inline-block;
+    }
+    .locked {
+      pointer-events: none;
+    }
+    .border-red-500 {
+      border-color: red;
+    }
+  </style>
+</head>
+<body class="bg-groningenDark min-h-screen flex items-center justify-center">
+  <div class="text-center">
+    <h1 class="text-4xl font-bold mb-6 text-groningenGreen">Bingo Board</h1>
+    <div class="grid grid-cols-5 gap-2 max-w-4xl mx-auto">
+      <template id="bingo-cell-template">
+        <div class="groningen-flag text-center p-6 h-32 flex items-center justify-center text-wrap text-balance rounded-lg cursor-pointer transition-all">
+          <span class="text-lg font-medium leading-snug">?</span>
+        </div>
+      </template>
+    </div>
+  </div>
+  <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-lg max-w-xs w-full">
+      <h2 id="modal-question" class="text-xl font-semibold mb-4">Vraag?</h2>
+      <div id="modal-options" class="space-y-2"></div>
+      <button onclick="closeModal()" class="mt-4 w-full bg-groningenGreen text-white px-4 py-2 rounded">Sluit</button>
+    </div>
+  </div>
+  <script>
+    const questions = [
+      { question: "Wat is je favoriete eten?", options: ["Pizza", "Pasta", "Sushi", "Friet"], answer: "Pizza" },
+      { question: "Heb je ooit in Groningen gewoond?", options: ["Ja", "Nee"], answer: "Ja" },
+      { question: "Noem een straat in de binnenstad", options: ["Astraat", "Bstraat", "Cstraat", "Dstraat"], answer: "Astraat" },
+      { question: "Wat is je lievelingskleur?", options: ["Blauw", "Rood", "Groen", "Geel"], answer: "Blauw" },
+      { question: "Ken je iemand uit Haren?", options: ["Ja", "Nee"], answer: "Ja" },
+      { question: "Wat is de Martinitoren?", options: ["Een kerk", "Een toren", "Een museum", "Een park"], answer: "Een toren" },
+      { question: "Ben je wel eens op de Grote Markt geweest?", options: ["Ja", "Nee"], answer: "Ja" },
+      { question: "Noem iets wat typisch Gronings is", options: ["Eierbal", "Sate", "Bier", "Pizza"], answer: "Eierbal" },
+      { question: "Wat betekent 'Kop d’r veur'?", options: ["Kom op", "Kijk uit", "Laten we gaan", "Jij kunt het"], answer: "Kom op" },
+      { question: "Ben je ooit met de trein naar Groningen gekomen?", options: ["Ja", "Nee"], answer: "Ja" },
+      { question: "Wat is het lekkerste café in Groningen?", options: ["Café De Drie Gezusters", "Café Noordeinde", "Café De Pijp", "Café Eetcafé"], answer: "Café De Drie Gezusters" },
+      { question: "Kun je een zin zeggen in het Gronings?", options: ["Ja", "Nee"], answer: "Ja" },
+      { question: "Wat is het beste festival in Groningen?", options: ["Groninger Feesten", "Eurosonic", "Oerol", "Noorderzon"], answer: "Eurosonic" },
+      { question: "Noem een wijk in Groningen", options: ["Helpman", "Zuidhorn", "Groningen-Oost", "Groningen-West"], answer: "Helpman" },
+      { question: "Wat is de naam van de universiteit?", options: ["Rijksuniversiteit Groningen", "Hanzehogeschool", "Groninger Hogeschool", "Stenden"], answer: "Rijksuniversiteit Groningen" },
+      { question: "Welke dag is marktdag op de Vismarkt?", options: ["Woensdag", "Donderdag", "Vrijdag", "Zaterdag"], answer: "Woensdag" },
+      { question: "Wat vind je van de Groningse regen?", options: ["Vervelend", "Moeilijk", "Leuk", "Geen mening"], answer: "Vervelend" },
+      { question: "Heb je wel eens een eierbal gegeten?", options: ["Ja", "Nee"], answer: "Ja" },
+      { question: "Noem een museum in Groningen", options: ["Groninger Museum", "Fries Museum", "Van Gogh Museum", "Rijksmuseum"], answer: "Groninger Museum" },
+      { question: "Wat is jouw mooiste herinnering aan Groningen?", options: ["Lente", "Zomer", "Herfst", "Winter"], answer: "Lente" },
+      { question: "Ben je ooit in het Noorderplantsoen geweest?", options: ["Ja", "Nee"], answer: "Ja" },
+      { question: "Noem een brug over het Reitdiep", options: ["Kardingebrug", "Hoge Brug", "Havenbrug", "Nieuwebrug"], answer: "Kardingebrug" },
+      { question: "Wat is een typisch studentenfeest?", options: ["Kroegentocht", "Bal van de Universiteit", "Huisfeest", "Combi-party"], answer: "Kroegentocht" },
+      { question: "Wat zou je doen op een dag vrij in Groningen?", options: ["Wandelen", "Fietsen", "Shoppen", "Film kijken"], answer: "Wandelen" },
+      { question: "Wat zou je doen op een dag vrij in Groningen?", options: ["Wandelen", "Fietsen", "Shoppen", "Film kijken"], answer: "Wandelen" }
+    ];
+    const board = document.querySelector(".grid");
+    const template = document.getElementById("bingo-cell-template");
+    const modal = document.getElementById("modal");
+    const modalQuestion = document.getElementById("modal-question");
+    const modalOptions = document.getElementById("modal-options");
+
+    function closeModal() {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    function openModal(questionData, cell, span) {
+      modalQuestion.textContent = questionData.question;
+      modalOptions.innerHTML = '';
+      questionData.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = "block w-full bg-groningenGray hover:bg-groningenGreen text-black px-4 py-2 rounded";
+        btn.textContent = opt;
+        btn.onclick = () => {
+          if (opt === questionData.answer) {
+            cell.classList.add("clicked");
+            span.classList.add("line-through");
+          } else {
+            cell.classList.add("border-red-500");
+            alert("Helaas, fout antwoord!");
+          }
+          cell.classList.add("locked");
+          closeModal();
+        };
+        modalOptions.appendChild(btn);
+      });
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+
+    questions.forEach((item, index) => {
+      const clone = template.content.cloneNode(true);
+      const cell = clone.querySelector("div");
+      const span = clone.querySelector("span");
+      span.textContent = item.question;
+      cell.addEventListener("click", () => {
+        if (!cell.classList.contains("locked")) {
+          if (item.question === "FREE") {
+            cell.classList.add("clicked");
+            span.classList.add("line-through");
+          } else {
+            openModal(item, cell, span);
+          }
+        }
+      });
+      board.appendChild(clone);
+    });
+  </script>
+</body>
+</html>
+
