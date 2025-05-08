@@ -58,7 +58,6 @@
       border-color: red;
     }
 
-    /* Modal styling */
     #modal-question {
       font-size: 16px;
       margin-bottom: 10px;
@@ -68,18 +67,16 @@
       margin-bottom: 5px;
     }
 
-    /* Map styling */
     #map {
-      height: 400px; /* Ensure the map has a visible height */
+      height: 400px;
       margin-top: 30px;
-      width: 100%; /* Ensure the map spans the full width */
+      width: 100%;
     }
   </style>
-  <!-- Add Leaflet.js CDN -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 </head>
-<body class="bg-groningenDark min-h-screen flex flex-col items-center justify-center">
+<body class="bg-groningenDark min-h-screen flex flex-col items-center justify-center relative">
   <div class="text-center px-4">
     <h1 class="text-3xl sm:text-4xl font-bold mb-6 text-groningenGreen">Bingo Board</h1>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 max-w-full mx-auto">
@@ -91,9 +88,6 @@
     </div>
   </div>
 
-  <!-- Map Section Below the Bingo Board -->
-  <div id="map"></div>
-
   <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
     <div class="bg-white p-6 rounded-lg max-w-xs w-full">
       <h2 id="modal-question" class="text-xl font-semibold mb-4">Vraag?</h2>
@@ -101,6 +95,8 @@
       <button onclick="closeModal()" class="mt-4 w-full bg-groningenGreen text-white px-4 py-2 rounded">Sluit</button>
     </div>
   </div>
+
+  <div id="map" class="z-0"></div>
 
   <script>
     const questions = [
@@ -200,14 +196,12 @@
       board.appendChild(clone);
     });
 
-// Initialize Leaflet map
-var map = L.map('map').setView([53.2194, 6.5665], 13); // Coordinates for Groningen
+var map = L.map('map').setView([53.2194, 6.5665], 13);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-// Define a preset route (array of coordinates)
 var route = [
   { coords: [53.21132940010275, 6.564076378409021], name: "Peerd van Ome Loeks" },
   { coords: [53.21275672408392, 6.565712724577141], name: "Regenboogpad" },
@@ -221,16 +215,13 @@ var route = [
   { coords: [53.20319572205277, 6.562495952358814], name: "Noorderpoort School" }
 ];
 
-// Update the polyline to use the new format
 var polyline = L.polyline(route.map(p => p.coords), { color: 'blue', weight: 4 }).addTo(map);
 map.fitBounds(polyline.getBounds());
 
-// Add markers with names
 route.forEach(point => {
   L.marker(point.coords).addTo(map)
     .bindPopup(point.name);
 });
-
 
   </script>
 </body>
