@@ -4,90 +4,474 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Billel Hut</title>
+    <title>Game Developer Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body class="bg-gray-900 text-gray-300">
+<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <!-- Header Component -->
+    <div id="header"></div>
 
-    <!-- Navbar -->
-    <nav class="bg-gray-800 shadow-lg fixed w-full top-0 z-50 h-16 flex items-center">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center w-full">
-            <a href="index.html" class="text-3xl font-extrabold text-white hover:text-blue-500 transition">Billel Hut</a>
-            <ul class="hidden md:flex space-x-6">
-                <li><a href="index.html" class="text-white hover:text-blue-500 transition">Home</a></li>
-                <li><a href="about.html" class="text-white hover:text-blue-500 transition">About</a></li>
-                <li><a href="projects.html" class="text-white hover:text-blue-500 transition">Projects</a></li>
-                <li><a href="index.html#contact" class="text-white hover:text-blue-500 transition">Contact</a></li>
-                <li><a href="bingo.html" class="text-white hover:text-blue-500 transition">Bingo</a></li>
-            </ul>
-            <!-- Mobile Menu Button -->
-            <button id="menu-btn" class="md:hidden text-white">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="md:hidden bg-gray-800 text-white text-center hidden absolute top-16 left-0 right-0 shadow-lg">
-        <ul class="space-y-4 py-4">
-            <li><a href="index.html" class="hover:text-blue-500 transition">Home</a></li>
-            <li><a href="about.html" class="hover:text-blue-500 transition">About</a></li>
-            <li><a href="projects.html" class="hover:text-blue-500 transition">Projects</a></li>
-            <li><a href="index.html#contact" class="hover:text-blue-500 transition">Contact</a></li>
-            <li><a href="bingo.html" class="hover:text-blue-500 transition">Bingo</a></li>
-        </ul>
-    </div>
-
-
-    <!-- Hero Section -->
-    <section class="flex items-center justify-center h-screen bg-gradient-to-r from-teal-500 to-blue-500 text-center text-white">
-        <div>
-            <h1 class="text-5xl font-extrabold mb-6 leading-tight">Welcome to My Website</h1>
-            <p class="text-xl mb-8">Explore my work, my projects, and get in touch!</p>
-            <a href="projects.html" class="px-8 py-4 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105">
-                View Projects
-            </a>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-800">
-        <div class="max-w-4xl mx-auto text-center text-white">
-            <h2 class="text-4xl font-extrabold mb-8">Contact Me</h2>
-            <p class="text-lg mb-12">Feel free to reach out for collaborations, inquiries, or just to say hello!</p>
-
-            <form class="bg-gray-700 p-8 rounded-lg shadow-xl space-y-6 max-w-3xl mx-auto">
-                <div class="flex gap-4">
-                    <div class="w-full">
-                        <label class="block text-white font-semibold mb-2">Name</label>
-                        <input type="text" class="w-full bg-gray-600 text-white p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Your Name" required>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center px-4">
+            <div class="text-center max-w-4xl">
+                <div class="flex justify-center gap-4 mb-8">
+                    <div class="p-3 bg-blue-500/10 rounded-lg border border-blue-500/20 w-16 h-16 flex items-center justify-center">
+                        <i class="fas fa-gamepad text-blue-400 text-3xl"></i>
                     </div>
-                    <div class="w-full">
-                        <label class="block text-white font-semibold mb-2">Email</label>
-                        <input type="email" class="w-full bg-gray-600 text-white p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Your Email" required>
+                    <div class="p-3 bg-purple-500/10 rounded-lg border border-purple-500/20 w-16 h-16 flex items-center justify-center">
+                        <i class="fas fa-code text-purple-400 text-3xl"></i>
+                    </div>
+                    <div class="p-3 bg-pink-500/10 rounded-lg border border-pink-500/20 w-16 h-16 flex items-center justify-center">
+                        <i class="fas fa-globe text-pink-400 text-3xl"></i>
                     </div>
                 </div>
+
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+                    MBO 4 Game Developer
+                </h1>
+
+                <p class="text-xl md:text-2xl font-semibold text-slate-300 mb-8 max-w-2xl mx-auto">
+                    Creating immersive gaming experiences and interactive web applications
+                </p>
+
+                <p class="text-slate-400 mb-12 max-w-xl mx-auto">
+                    Passionate about game development, programming, and bringing creative ideas to life through code
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="projects.html"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                        View Projects
+                    </a>
+                    <a href="#contact"
+                        class="border border-slate-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-slate-800 transition-colors">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="min-h-screen py-20 px-4">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 text-center">About Me</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto mb-12"></div>
+
+                <div class="grid md:grid-cols-2 gap-12 mb-16">
+                    <div class="text-slate-300 space-y-4">
+                        <p>
+                            Hi! I'm a passionate MBO 4 Game Developer with a love for creating engaging and
+                            immersive gaming experiences. My journey in game development has equipped me with
+                            a diverse skill set spanning programming, design, and project management.
+                        </p>
+                        <p>
+                            I specialize in bringing ideas to life through code, whether it's a captivating
+                            game mechanic, a stunning visual effect, or a seamless user interface. I'm always
+                            eager to learn new technologies and push the boundaries of what's possible in
+                            interactive entertainment.
+                        </p>
+                        <p>
+                            When I'm not coding, you can find me playing the latest games, experimenting
+                            with new game engines, or collaborating with fellow developers on exciting projects.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div
+                            class="p-6 rounded-lg border bg-blue-500/10 border-blue-500/20 transition-transform hover:scale-105">
+                            <i class="fas fa-gamepad text-blue-400 text-3xl mb-3"></i>
+                            <h3 class="text-white font-semibold mb-2">Game Development</h3>
+                            <p class="text-sm text-slate-400">Unity, Unreal Engine</p>
+                        </div>
+                        <div
+                            class="p-6 rounded-lg border bg-purple-500/10 border-purple-500/20 transition-transform hover:scale-105">
+                            <i class="fas fa-code text-purple-400 text-3xl mb-3"></i>
+                            <h3 class="text-white font-semibold mb-2">Programming</h3>
+                            <p class="text-sm text-slate-400">C#, C++, JavaScript, and more</p>
+                        </div>
+                        <div
+                            class="p-6 rounded-lg border bg-pink-500/10 border-pink-500/20 transition-transform hover:scale-105">
+                            <i class="fas fa-palette text-pink-400 text-3xl mb-3"></i>
+                            <h3 class="text-white font-semibold mb-2">Design</h3>
+                            <p class="text-sm text-slate-400">Level design, UI/UX, and game mechanics</p>
+                        </div>
+                        <div
+                            class="p-6 rounded-lg border bg-yellow-500/10 border-yellow-500/20 transition-transform hover:scale-105">
+                            <i class="fas fa-bolt text-yellow-400 text-3xl mb-3"></i>
+                            <h3 class="text-white font-semibold mb-2">Web Development</h3>
+                            <p class="text-sm text-slate-400">Html, Css, Tailwind</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects Preview -->
+        <section id="projects" class="py-20 px-4">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 text-center">Featured Work</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto mb-8"></div>
+                <p class="text-center text-slate-300 mb-12 max-w-2xl mx-auto">
+                    Check out some of my games, websites, and interactive projects
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-12">
+                    <!-- Featured Game 1 -->
+                    <div
+                        class="bg-slate-800/50 border border-slate-700 rounded-lg overflow-hidden hover:border-blue-500/50 transition-all group">
+                        <div class="relative overflow-hidden aspect-video">
+                            <img src="https://images.unsplash.com/photo-1641350625112-3b1d73c71418?w=400"
+                                alt="Pixel Adventure"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60">
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="bg-blue-600/90 text-white text-xs px-3 py-1 rounded-full">Game</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">Pixel Adventure</h3>
+                            <p class="text-slate-400 text-sm mb-3">
+                                Retro-style 2D platformer with 50+ challenging levels
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs text-blue-400">Unity</span>
+                                <span class="text-slate-600">•</span>
+                                <span class="text-xs text-blue-400">C#</span>
+                                <span class="text-slate-600">•</span>
+                                <span class="text-xs text-blue-400">2D Platformer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Featured Game 2 -->
+                    <div
+                        class="bg-slate-800/50 border border-slate-700 rounded-lg overflow-hidden hover:border-blue-500/50 transition-all group">
+                        <div class="relative overflow-hidden aspect-video">
+                            <img src="https://images.unsplash.com/photo-1723360480597-d21deccaf3d0?w=400"
+                                alt="Speed Racer"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60">
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="bg-blue-600/90 text-white text-xs px-3 py-1 rounded-full">Game</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">Speed Racer</h3>
+                            <p class="text-slate-400 text-sm mb-3">
+                                High-octane racing with realistic physics and multiplayer
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs text-blue-400">Unreal Engine</span>
+                                <span class="text-slate-600">•</span>
+                                <span class="text-xs text-blue-400">C++</span>
+                                <span class="text-slate-600">•</span>
+                                <span class="text-xs text-blue-400">Racing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Featured Project 1 -->
+                    <div
+                        class="bg-slate-800/50 border border-slate-700 rounded-lg overflow-hidden hover:border-purple-500/50 transition-all group">
+                        <div class="relative overflow-hidden aspect-video">
+                            <img src="https://images.unsplash.com/photo-1557324232-b8917d3c3dcb?w=400"
+                                alt="Portfolio Website"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60">
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="bg-purple-600/90 text-white text-xs px-3 py-1 rounded-full">Website</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">Portfolio Website</h3>
+                            <p class="text-slate-400 text-sm mb-3">
+                                Modern responsive portfolio with smooth animations
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs text-purple-400">React</span>
+                                <span class="text-slate-600">•</span>
+                                <span class="text-xs text-purple-400">TypeScript</span>
+                                <span class="text-slate-600">•</span>
+                                <span class="text-xs text-purple-400">Tailwind</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Featured Project 2 -->
+                    <div
+                        class="bg-slate-800/50 border border-slate-700 rounded-lg overflow-hidden hover:border-purple-500/50 transition-all group">
+                        <div class="relative overflow-hidden aspect-video">
+                            <img src="https://images.unsplash.com/photo-1695074185991-136f993ad998?w=400"
+                                alt="Game Studio Website"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60">
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="bg-purple-600/90 text-white text-xs px-3 py-1 rounded-full">Website</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">Game Studio Site</h3>
+                            <p class="text-slate-400 text-sm mb-3">
+                                Corporate website with blog and game showcase
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs text-purple-400">Next.js</span>
+                                <span class="text-slate-600">•</span>
+                                <span class="text-xs text-purple-400">React</span>
+                                <span class="text-slate-600">•</span>
+                                <span class="text-xs text-purple-400">CMS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a href="projects.html"
+                        class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+                        <i class="fas fa-th mr-2"></i>View All Projects & Games
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section id="resume" class="min-h-screen py-20 px-4">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 text-center">Resume</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto mb-8"></div>
+
+                <div class="text-center mb-12">
+                    <button
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                        <i class="fas fa-download mr-2"></i>Download Resume PDF
+                    </button>
+                </div>
+
+                <!-- Education -->
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="p-2 bg-blue-500/10 rounded-lg border border-blue-500/20">
+                            <i class="fas fa-graduation-cap text-blue-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">Education</h3>
+                    </div>
+
+                    <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-6 mb-4">
+                        <h4 class="text-xl font-bold text-white mb-2">Noorderpoort - MBO Level 2 ICT Support</h4>
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-slate-400 mb-4">
+                            <span>Dutch vocational education - ICT Support Technician</span>
+                            <span class="hidden sm:inline">•</span>
+                            <span>2023 - 2024</span>
+                        </div>
+                        <p class="text-slate-300">Specialized in IT support, hardware configuration, and basic networking. Final project: Assembled a full PC, installed the operating system, created custom network cabling.</p>
+                    </div>
+
+                    <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-6 mb-4">
+                        <h4 class="text-xl font-bold text-white mb-2">Noorderpoort - MBO Level 4 Software Developer</h4>
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-slate-400 mb-4">
+                            <span>Dutch vocational education - Software & Game Development</span>
+                            <span class="hidden sm:inline">•</span>
+                            <span>2024 - Present</span>
+                        </div>
+                        <p class="text-slate-300">Specialized in game programming, design, and production.</p>
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="p-2 bg-purple-500/10 rounded-lg border border-purple-500/20">
+                            <i class="fas fa-briefcase text-purple-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">Experience</h3>
+                    </div>
+
+                    <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-6 mb-4">
+                        <h4 class="text-xl font-bold text-white mb-2">Junior Game Developer</h4>
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-slate-400 mb-4">
+                            <span>Indie Game Studio</span>
+                            <span class="hidden sm:inline">•</span>
+                            <span>2023 - Present</span>
+                        </div>
+                        <ul class="space-y-2">
+                            <li class="text-slate-300 flex items-start">
+                                <span class="text-blue-400 mr-2">▹</span>
+                                Developed gameplay mechanics and systems using Unity and C#
+                            </li>
+                            <li class="text-slate-300 flex items-start">
+                                <span class="text-blue-400 mr-2">▹</span>
+                                Collaborated with designers to implement game features
+                            </li>
+                            <li class="text-slate-300 flex items-start">
+                                <span class="text-blue-400 mr-2">▹</span>
+                                Optimized game performance for multiple platforms
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-6">
+                        <h4 class="text-xl font-bold text-white mb-2">Game Development Intern</h4>
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-slate-400 mb-4">
+                            <span>Creative Games Co.</span>
+                            <span class="hidden sm:inline">•</span>
+                            <span>2022 - 2023</span>
+                        </div>
+                        <ul class="space-y-2">
+                            <li class="text-slate-300 flex items-start">
+                                <span class="text-blue-400 mr-2">▹</span>
+                                Assisted in development of mobile puzzle games
+                            </li>
+                            <li class="text-slate-300 flex items-start">
+                                <span class="text-blue-400 mr-2">▹</span>
+                                Implemented UI/UX designs and animations
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Skills -->
                 <div>
-                    <label class="block text-white font-semibold mb-2">Message</label>
-                    <textarea class="w-full bg-gray-600 text-white p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" rows="6" placeholder="Your Message" required></textarea>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="p-2 bg-pink-500/10 rounded-lg border border-pink-500/20">
+                            <i class="fas fa-award text-pink-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">Skills</h3>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-6">
+                            <h4 class="text-lg font-bold text-white mb-3">Game Engines</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-slate-700/50 text-slate-300 rounded-full text-sm">Unity</span>
+                                <span class="px-3 py-1 bg-slate-700/50 text-slate-300 rounded-full text-sm">Unreal
+                                    Engine</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-6">
+                            <h4 class="text-lg font-bold text-white mb-3">Programming</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-slate-700/50 text-slate-300 rounded-full text-sm">C#</span>
+                                <span class="px-3 py-1 bg-slate-700/50 text-slate-300 rounded-full text-sm">C++</span>
+                                <span
+                                    class="px-3 py-1 bg-slate-700/50 text-slate-300 rounded-full text-sm">JavaScript</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-6">
+                            <h4 class="text-lg font-bold text-white mb-3">Web Development</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-slate-700/50 text-slate-300 rounded-full text-sm">Html</span>
+                                <span
+                                    class="px-3 py-1 bg-slate-700/50 text-slate-300 rounded-full text-sm">Node.js</span>
+                                <span
+                                    class="px-3 py-1 bg-slate-700/50 text-slate-300 rounded-full text-sm">Tailwind</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="w-full px-8 py-4 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105">
-                    Send Message
-                </button>
-            </form>
-        </div>
-    </section>
+            </div>
+        </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white text-center py-6 mt-auto">
-        <p class="text-sm">&copy; 2025 Billel Hut. All Rights Reserved.</p>
-    </footer>
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-4">
+            <div class="container mx-auto max-w-4xl">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 text-center">Get In Touch</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto mb-8"></div>
 
-    <script src="script.js"></script>
+                <p class="text-center text-slate-300 mb-12 max-w-2xl mx-auto">
+                    I'm always open to new opportunities, collaborations, or just a chat about games and development.
+                    Feel free to reach out!
+                </p>
 
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <!-- Contact Form -->
+                    <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-6">
+                        <div class="flex items-center gap-2 mb-6">
+                            <i class="fas fa-message text-blue-400"></i>
+                            <h3 class="text-xl font-bold text-white">Send a Message</h3>
+                        </div>
+
+                        <form action="https://formspree.io/f/xvglqgge" method="POST" class="space-y-4">
+                            <input type="text" name="name" placeholder="Your Name" required
+                                class="w-full bg-slate-900/50 border border-slate-600 text-white placeholder:text-slate-500 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500">
+
+                            <input type="email" name="email" placeholder="Your Email" required
+                                class="w-full bg-slate-900/50 border border-slate-600 text-white placeholder:text-slate-500 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500">
+
+                            <textarea name="message" placeholder="Your Message" required rows="5"
+                                class="w-full bg-slate-900/50 border border-slate-600 text-white placeholder:text-slate-500 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 resize-none"></textarea>
+
+                            <button type="submit"
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div>
+                        <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-6 mb-6">
+                            <div class="flex items-center gap-2 mb-6">
+                                <i class="fas fa-envelope text-blue-400"></i>
+                                <h3 class="text-xl font-bold text-white">Connect With Me</h3>
+                            </div>
+
+                            <div class="space-y-4">
+                                <a href="https://github.com/Billel-Game"
+                                    class="flex items-center gap-3 text-slate-300 hover:text-white transition-colors p-3 rounded-lg hover:bg-slate-700/50">
+                                    <i class="fab fa-github w-5"></i>
+                                    <span>GitHub</span>
+                                </a>
+                                <a href="https://www.linkedin.com/in/billel-hut-6985872ba/"
+                                    class="flex items-center gap-3 text-slate-300 hover:text-blue-400 transition-colors p-3 rounded-lg hover:bg-slate-700/50">
+                                    <i class="fab fa-linkedin w-5"></i>
+                                    <span>LinkedIn</span>
+                                </a>
+                                <a href="https://discord.com/users/231852168674541568"
+                                    class="flex items-center gap-3 text-slate-300 hover:text-blue-400 transition-colors p-3 rounded-lg hover:bg-slate-700/50">
+                                    <i class="fab fa-discord w-5"></i>
+                                    <span>Discord</span>
+                                </a>
+                                <a href="mailto:billelhutg@gmail.com"
+                                    class="flex items-center gap-3 text-slate-300 hover:text-red-400 transition-colors p-3 rounded-lg hover:bg-slate-700/50">
+                                    <i class="fas fa-envelope w-5"></i>
+                                    <span>Email</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div
+                            class="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-lg p-6">
+                            <h3 class="text-xl font-bold text-white mb-3">Available for Work</h3>
+                            <p class="text-slate-300 mb-4">
+                                I'm currently open to freelance projects and full-time opportunities in game
+                                development.
+                            </p>
+                            <button
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors">
+                                Download Resume
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer"></div>
+
+    <!-- Load Components -->
+    <script src="components.js"></script>
 </body>
 
 </html>
