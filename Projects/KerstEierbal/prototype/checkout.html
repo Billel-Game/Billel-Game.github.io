@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Bestellen — Kleierbal</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="antialiased text-slate-800">
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+        <h1 class="font-serif text-3xl mb-4">Bestellen — Kleierbal</h1>
+        <p class="text-slate-600 mb-6">Eén product — €10,00 per kleierbal gaat naar Jeugdbonds Sport. Vul je gegevens in
+            om te bestellen.</p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+
+            <div class="bg-white p-6 rounded-xl shadow">
+                <h2 class="font-medium mb-4">Uw bestelling</h2>
+
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="w-32 h-32 md:w-44 md:h-44 bg-gradient-to-b from-white to-[#f6efea] rounded-full flex items-center justify-center shadow-inner overflow-hidden relative">
+                        <div class="bauble-cap small" aria-hidden="true"><span class="bauble-loop"></span></div>
+                        <img src="Images/Kleierbal.jpg" alt="Kleierbal kerstbal" class="w-full h-full object-cover rounded-full" />
+                    </div>
+                    <div>
+                        <div class="font-semibold">Kleierbal — Plantbaar</div>
+                        <div class="text-sm text-slate-600">Handgemaakt, lokale zaden</div>
+                        <div class="mt-2 text-lg font-bold text-leaf" id="price">€12,00</div>
+                    </div>
+                </div>
+
+                <label class="block text-sm mb-2">Aantal</label>
+                <input id="qty" type="number" value="1" min="1" class="w-24 px-3 py-2 border rounded-lg mb-4" />
+
+                <div class="mb-2 flex items-center gap-3">
+                    <input id="donateToggle" type="checkbox" class="w-4 h-4" />
+                    <label for="donateToggle" class="text-sm">Ik wil een extra donatie toevoegen (optioneel)</label>
+                </div>
+
+                <div id="donationBlock" class="mb-4 opacity-60 pointer-events-none">
+                    <label class="block text-sm mb-2">Extra donatie — €</label>
+                    <input id="donation" type="number" value="0" min="0" step="0.5"
+                        class="w-36 px-3 py-2 border rounded-lg" disabled />
+                </div>
+
+                <div class="border-t pt-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm text-slate-600">Subtotaal</span>
+                        <span class="text-sm text-slate-700" id="subtotal">€12,00</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm text-slate-600">Verzendkosten</span>
+                        <span class="text-sm text-slate-700" id="shipping">€3,50</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm text-slate-600">Donatie</span>
+                        <span class="text-sm text-slate-700" id="donationTotal">€0,00</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-lg font-semibold">Totaal</span>
+                        <span class="text-lg font-bold" id="total">€15,50</span>
+                    </div>
+                </div>
+            </div>
+
+            <form id="orderForm" class="bg-white p-6 rounded-xl shadow space-y-4">
+                <h2 class="font-medium">Leveringsgegevens</h2>
+
+                <div>
+                    <label class="text-sm">Naam*</label>
+                    <input name="name" required class="w-full mt-1 px-3 py-2 border rounded-lg" />
+                </div>
+
+                <div>
+                    <label class="text-sm">E-mail</label>
+                    <input id="email" name="email" type="email" class="w-full mt-1 px-3 py-2 border rounded-lg" />
+                </div>
+
+                <div>
+                    <label class="text-sm">Telefoon</label>
+                    <input id="phone" name="phone" type="tel" class="w-full mt-1 px-3 py-2 border rounded-lg" />
+                </div>
+
+                <div>
+                    <label class="text-sm">Straat*</label>
+                    <input id="street" name="street" class="w-full mt-1 px-3 py-2 border rounded-lg" />
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div>
+                        <label class="text-sm">Postcode*</label>
+                        <input id="postcode" name="postcode" placeholder="1234AB"
+                            class="w-full mt-1 px-3 py-2 border rounded-lg" />
+                    </div>
+                    <div>
+                        <label class="text-sm">Huisnummer*</label>
+                        <input id="huisnummer" name="huisnummer" placeholder="1"
+                            class="w-full mt-1 px-3 py-2 border rounded-lg" />
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-sm">Plaats*</label>
+                    <input id="city" name="city" class="w-full mt-1 px-3 py-2 border rounded-lg" />
+                </div>
+                <div>
+                    <label class="text-sm">Betaalmethode (demo)</label>
+                    <select name="payment" id="paymentMethod" class="w-full mt-1 px-3 py-2 border rounded-lg">
+                        <option>iDEAL (demo)</option>
+                        <option>Overboeking</option>
+                        <option>Contant bij levering</option>
+                        <option>Ophalen</option>
+                    </select>
+                    <p class="text-xs text-slate-500 mt-1">Kies "Ophalen" om verzendkosten te vermijden.</p>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-white text-accent px-4 py-2 rounded-full shadow">Bestelling
+                        plaatsen — Betaal nu</button>
+                </div>
+            </form>
+        </div>
+
+        <p class="text-xs text-slate-500 mt-4">Bij het plaatsen van de bestelling gaat u akkoord met de voorwaarden.
+            (Demo checkout)</p>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- lightweight snowflakes (decorative) -->
+    <div aria-hidden="true">
+        <span class="snowflake sf-1">❄️</span>
+        <span class="snowflake sf-2">❄️</span>
+        <span class="snowflake sf-3">❄️</span>
+        <span class="snowflake sf-4">❄️</span>
+        <span class="snowflake sf-5">❄️</span>
+    </div>
+
+    <script>
+        const pricePer = 12;
+        const defaultShipping = 3.5;
+
+        const qtyEl = document.getElementById('qty');
+        const donationEl = document.getElementById('donation');
+        const subtotalEl = document.getElementById('subtotal');
+        const donationTotalEl = document.getElementById('donationTotal');
+        const shippingEl = document.getElementById('shipping');
+        const totalEl = document.getElementById('total');
+        const donateToggle = document.getElementById('donateToggle');
+        const donationBlock = document.getElementById('donationBlock');
+        const paymentEl = document.getElementById('paymentMethod');
+
+        function fmt(v) { return '€' + v.toFixed(2).replace('.', ','); }
+
+        function currentShipping() {
+            // if user chooses "Ophalen" (exact string), shipping = 0
+            const val = (paymentEl.value || '').toLowerCase();
+            return val.includes('ophalen') ? 0 : defaultShipping;
+        }
+
+        function updateTotals() {
+            const q = Math.max(1, Number(qtyEl.value) || 1);
+            const d = (donateToggle.checked) ? Math.max(0, Number(donationEl.value) || 0) : 0;
+            const subtotal = pricePer * q;
+            const ship = currentShipping();
+            const total = subtotal + ship + d;
+            subtotalEl.textContent = fmt(subtotal);
+            shippingEl.textContent = fmt(ship);
+            donationTotalEl.textContent = fmt(d);
+            totalEl.textContent = fmt(total);
+        }
+
+        // toggle donation input visibility / enabled state
+        donateToggle.addEventListener('change', function () {
+            if (donateToggle.checked) {
+                donationBlock.classList.remove('opacity-60', 'pointer-events-none');
+                donationEl.disabled = false;
+                if (Number(donationEl.value) === 0) donationEl.value = 2; // small suggestion
+            } else {
+                donationBlock.classList.add('opacity-60', 'pointer-events-none');
+                donationEl.disabled = true;
+                donationEl.value = 0;
+            }
+            updateTotals();
+        });
+
+        // when payment/shipping choice changes, recalc shipping
+        paymentEl.addEventListener('change', updateTotals);
+
+        qtyEl.addEventListener('input', updateTotals);
+        donationEl.addEventListener('input', updateTotals);
+        updateTotals();
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const postcodeEl = document.getElementById('postcode');
+        const huisnummerEl = document.getElementById('huisnummer');
+        const streetEl = document.getElementById('street');
+        const cityEl = document.getElementById('city');
+        const phoneEl = document.getElementById('phone');
+        const emailEl = document.getElementById('email');
+
+        function normalizePostcode(pc) { return pc ? pc.replace(/\s+/g, '').toUpperCase() : ''; }
+
+        // Form submit: validate required address fields and at least one contact method
+        document.getElementById('orderForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = (document.querySelector('[name="name"]').value || '').trim();
+            const street = (streetEl.value || '').trim();
+            const nr = (huisnummerEl.value || '').trim();
+            const pc = normalizePostcode(postcodeEl.value);
+            const city = (cityEl.value || '').trim();
+            const email = (emailEl.value || '').trim();
+            const phone = (phoneEl.value || '').trim();
+
+            if (!name || !street || !nr || !pc || !city) {
+                alert('Vul naam, straat, huisnummer, postcode en plaats in.');
+                return;
+            }
+            if (!email && !phone) {
+                alert('Vul ten minste een e-mailadres of telefoonnummer in.');
+                return;
+            }
+
+            // demo: save order to localStorage (fake backend)
+            const q = Math.max(1, Number(qtyEl.value) || 1);
+            const donationAmount = (donateToggle.checked) ? Math.max(0, Number(donationEl.value) || 0) : 0;
+            const subtotal = pricePer * q;
+            const ship = currentShipping();
+            const total = subtotal + ship + donationAmount;
+
+            const order = {
+                id: 'ord_' + Date.now(),
+                name: name,
+                email: email,
+                phone: phone,
+                address: {
+                    street: street,
+                    number: nr,
+                    postcode: pc,
+                    city: city
+                },
+                items: [
+                    { sku: 'kleierbal', title: 'Kleierbal — Plantbaar', unit_price_cents: Math.round(pricePer * 100), quantity: q }
+                ],
+                donation: Math.round(donationAmount * 100),
+                shipping_cents: Math.round(ship * 100),
+                subtotal_cents: Math.round(subtotal * 100),
+                total_cents: Math.round(total * 100),
+                payment_method: paymentEl.value,
+                status: 'pending',
+                created_at: new Date().toISOString()
+            };
+
+            // send order to local backend (writes to backend/orders.json)
+            fetch('../backend/api/orders', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(order)
+            }).then(resp => {
+                if (!resp.ok) throw new Error('Server returned ' + resp.status);
+                return resp.json();
+            }).then(saved => {
+                alert('Dank! Uw bestelling is ontvangen. (demo)\nJe kunt de bestellingen bekijken op /adminpanel.html');
+                window.location.href = 'index.html';
+            }).catch(err => {
+                console.warn('Could not send order to server, falling back to localStorage', err);
+                try {
+                    const existing = JSON.parse(localStorage.getItem('offlineOrders') || '[]');
+                    existing.unshift(order);
+                    localStorage.setItem('offlineOrders', JSON.stringify(existing));
+                    alert('Server onbereikbaar — bestelling opgeslagen in uw browser (offline demo).\nOpen adminpanel.html in deze browser om offline bestellingen te bekijken.');
+                    window.location.href = 'index.html';
+                } catch (saveErr) {
+                    console.error('Saving offline order failed', saveErr);
+                    alert('Kon bestelling niet verwerken. Controleer de console voor details.');
+                }
+            });
+        });
+    </script>
+    <script src="js/components.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Kleierbal — Contact</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="antialiased text-slate-800 bg-white relative overflow-x-hidden">
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="max-w-6xl mx-auto px-6 pt-6 pb-16">
+        <section class="bg-white/70 rounded-2xl p-6 md:p-12 shadow-lg">
+            <h1 class="font-serif text-accent text-3xl md:text-4xl mb-4">Neem contact op</h1>
+            <p class="text-slate-600 max-w-2xl mb-8">
+                Vragen over de Kleierbal, bestellingen of samenwerking? Stuur ons gerust een bericht — we helpen je
+                graag verder.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div class="text-accent text-2xl">📍</div>
+                        <div>
+                            <h3 class="font-medium text-lg">Locatie</h3>
+                            <p class="text-slate-600 text-sm">Sappemeer-Oost, Groningen</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="text-accent text-2xl">📞</div>
+                        <div>
+                            <h3 class="font-medium text-lg">Telefoon</h3>
+                            <p class="text-slate-600 text-sm">06 123 456 78</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="text-accent text-2xl">✉️</div>
+                        <div>
+                            <h3 class="font-medium text-lg">E-mail</h3>
+                            <p class="text-slate-600 text-sm">info@kleierbal.nl</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="text-accent text-2xl flex items-center justify-center">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-lg">Social Media</h3>
+                            <a href="https://www.facebook.com/jeugdbondssport" target="_blank"
+                                class="text-sm text-slate-600 hover:text-accent transition">
+                                Volg Kleierbal op Facebook
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <form class="space-y-4 bg-white/60 p-6 rounded-xl shadow">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Naam</label>
+                        <input type="text"
+                            class="w-full py-3 px-4 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-accent"
+                            placeholder="Je naam">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-1">E-mail</label>
+                        <input type="email"
+                            class="w-full py-3 px-4 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-accent"
+                            placeholder="naam@example.com">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Telefoon (optioneel)</label>
+                        <input type="tel"
+                            class="w-full py-3 px-4 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-accent"
+                            placeholder="06…">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Bericht</label>
+                        <textarea
+                            class="w-full py-3 px-4 rounded-lg border border-slate-300 h-32 focus:outline-none focus:ring-2 focus:ring-accent"
+                            placeholder="Je bericht..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary w-full md:w-auto">
+                        Verstuur bericht
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/components.js"></script>
+</body>
+
+</html>

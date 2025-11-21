@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Admin — Bestellingen (Demo)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="antialiased text-slate-800">
+    <div id="navbar-placeholder"></div>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+        <h1 class="font-serif text-3xl mb-4">Admin — Bestellingen (demo)</h1>
+
+        <div id="noOrders" class="text-slate-600 mb-4">Laden…</div>
+
+        <div class="overflow-x-auto bg-white rounded-xl shadow">
+            <table class="w-full text-left" id="ordersTable">
+                <thead class="bg-slate-50">
+                    <tr>
+                        <th class="px-4 py-3">ID</th>
+                        <th class="px-4 py-3">Naam</th>
+                        <th class="px-4 py-3">Email / Tel</th>
+                        <th class="px-4 py-3">Aantal</th>
+                        <th class="px-4 py-3">Totaal</th>
+                        <th class="px-4 py-3">Status</th>
+                        <th class="px-4 py-3">Aangemaakt</th>
+                        <th class="px-4 py-3">Acties</th>
+                    </tr>
+                </thead>
+                <tbody id="ordersBody"></tbody>
+            </table>
+        </div>
+
+        <div class="mt-4 flex gap-3">
+            <button id="clearBtn" class="px-4 py-2 bg-red-500 text-white rounded">Verwijder alle demo-bestellingen</button>
+            <button id="exportBtn" class="px-4 py-2 bg-slate-700 text-white rounded">Export CSV</button>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+
+        function fmtCurrency(cents) {
+            return '€' + (cents / 100).toFixed(2).replace('.', ',');
+        }
+
+        async function loadOrders() {
+            // Try server first; if it fails, fall back to localStorage 'offlineOrders'
+            try {
+                const resp = await fetch('../backend/api/orders');
+                if (!resp.ok) throw new Error('Failed to fetch orders');
+                return await resp.json();
+            } catch (e) {
+                console.warn('Could not load orders from server, falling back to localStorage', e);
+                try {
+                    return JSON.parse(localStorage.getItem('offlineOrders') || '[]');
+                } catch (le) {
+                    console.error('Failed to parse offlineOrders', le);
+                    return [];
+                }
+            }
+        }
+
+        async function markFulfilled(id) {
+            await fetch('../backend/api/orders/' + encodeURIComponent(id), { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: 'fulfilled' }) });
+        }
+
+        async function deleteOrder(id) {
+            await fetch('../backend/api/orders/' + encodeURIComponent(id), { method: 'DELETE' });
+        }
+
+        async function clearOrders() {
+            await fetch('../backend/api/orders/clear', { method: 'POST' });
+        }
+
+        async function render() {
+            const orders = await loadOrders();
+            const body = document.getElementById('ordersBody');
+            const noEl = document.getElementById('noOrders');
+            body.innerHTML = '';
+            if (!orders || orders.length === 0) {
+                noEl.textContent = 'Geen demo-bestellingen gevonden.';
+                return;
+            }
+            noEl.textContent = orders.length + ' demo-bestelling(en)';
+
+            orders.forEach(o => {
+                const tr = document.createElement('tr');
+                tr.className = 'border-t';
+                const qty = (o.items && o.items[0]) ? o.items[0].quantity : '';
+                tr.innerHTML = `
+                    <td class="px-4 py-3 font-mono text-xs">${o.id}</td>
+                    <td class="px-4 py-3">${o.name}<div class="text-xs text-slate-500">${o.address.street} ${o.address.number}, ${o.address.postcode} ${o.address.city}</div></td>
+                    <td class="px-4 py-3">${o.email || ''}<div class="text-xs text-slate-500">${o.phone || ''}</div></td>
+                    <td class="px-4 py-3">${qty}</td>
+                    <td class="px-4 py-3">${fmtCurrency(o.total_cents)}</td>
+                    <td class="px-4 py-3"><span class="badge">${o.status}</span></td>
+                    <td class="px-4 py-3 text-xs text-slate-500">${new Date(o.created_at).toLocaleString()}</td>
+                    <td class="px-4 py-3">
+                        <button class="mr-2 px-3 py-1 bg-green-500 text-white rounded" data-action="mark" data-id="${o.id}">Markeer voldaan</button>
+                        <button class="px-3 py-1 bg-red-500 text-white rounded" data-action="delete" data-id="${o.id}">Verwijder</button>
+                    </td>
+                `;
+                body.appendChild(tr);
+            });
+        }
+
+        document.addEventListener('click', async function (e) {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+            const action = btn.getAttribute('data-action');
+            const id = btn.getAttribute('data-id');
+            if (!action || !id) return;
+
+            // Local fallback helpers
+            function loadLocal() {
+                try { return JSON.parse(localStorage.getItem('offlineOrders') || '[]'); } catch (_) { return []; }
+            }
+            function saveLocal(list) { localStorage.setItem('offlineOrders', JSON.stringify(list)); }
+
+            if (action === 'mark') {
+                try {
+                    await markFulfilled(id);
+                } catch (e) {
+                    // fallback: update localStorage
+                    const l = loadLocal();
+                    const idx = l.findIndex(x => x.id === id);
+                    if (idx !== -1) { l[idx].status = 'fulfilled'; saveLocal(l); }
+                }
+                await render();
+            } else if (action === 'delete') {
+                if (!confirm('Verwijder bestelling ' + id + '?')) return;
+                try {
+                    await deleteOrder(id);
+                } catch (e) {
+                    const l = loadLocal();
+                    const filtered = l.filter(x => x.id !== id);
+                    saveLocal(filtered);
+                }
+                await render();
+            }
+        });
+
+        document.getElementById('clearBtn').addEventListener('click', async function () {
+            if (!confirm('Weet je zeker dat je alle demo-bestellingen wilt verwijderen?')) return;
+            try {
+                await clearOrders();
+            } catch (e) {
+                // fallback: clear localStorage
+                localStorage.removeItem('offlineOrders');
+            }
+            await render();
+        });
+
+        document.getElementById('exportBtn').addEventListener('click', async function () {
+            const orders = await loadOrders();
+            if (!orders || orders.length === 0) return alert('Geen bestellingen om te exporteren.');
+            const rows = [];
+            rows.push(['id','name','email','phone','qty','total_eur','status','created_at']);
+            orders.forEach(o => {
+                const qty = (o.items && o.items[0]) ? o.items[0].quantity : '';
+                rows.push([o.id, o.name, o.email||'', o.phone||'', String(qty), (o.total_cents/100).toFixed(2), o.status, o.created_at]);
+            });
+            const csv = rows.map(r => r.map(c => '"' + String(c).replace(/"/g,'""') + '"').join(',')).join('\n');
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'demo-orders.csv';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        // initial render
+        render();
+    </script>
+    <script src="js/components.js"></script>
+
+</body>
+
+</html>

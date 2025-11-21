@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@theme {
+  --color-festive-green: #0f5132;
+  --color-accent: #0e4328;
+  --color-muted: #6b6b6b;
+  --color-gold: #b58800;
+}
+
+body {
+
+  background-image: linear-gradient(rgba(251,247,242,0.50), rgba(255,255,255,0.30)), url('Images/kerstbanner.avif');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(180deg, #0f5132, #0e4328);
+  color: #fff !important;
+  padding: 0.6rem 1rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(15, 81, 50, 0.16);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: #0e4328;
+  border: 1px solid rgba(14, 67, 40, 0.12);
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+}
+
+/* Product card (simple) */
+.product-card {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 1rem;
+  padding: 1.6rem;
+  box-shadow: 0 12px 34px rgba(10, 10, 10, 0.08);
+}
+
+/* Gold ring / decorative border used on bauble visuals */
+.ring-gold {
+  border: 3px solid rgb(var(--color-gold) / 0.95);
+  box-shadow: 0 0 0 14px rgb(var(--color-gold) / 0.22), 0 22px 60px rgba(0, 0, 0, 0.14);
+  border-radius: 9999px;
+  z-index: 40;
+}
+
+/* Bauble cap (metallic hanger) */
+.bauble-cap {
+  position: absolute;
+  top: -30px;
+  /* lift cap above the rim */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 22px;
+  border-radius: 8px 8px 4px 4px;
+  background: linear-gradient(180deg, #f3ead0, #b48a28);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22), inset 0 -6px 12px rgba(255, 255, 255, 0.08);
+  z-index: 100;
+  /* ensure cap sits above ring */
+}
+
+.bauble-cap.small {
+  width: 44px;
+  height: 16px;
+  top: -20px;
+}
+
+.bauble-cap .bauble-loop {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 14px;
+  border: 2px solid rgba(75, 58, 20, 0.95);
+  border-bottom: 0;
+  border-radius: 12px 12px 0 0;
+  background: transparent;
+}
+
+/* subtle border for product-card when needed */
+.product-card {
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+
+.snowflake {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 12px;
+  animation: fall var(--dur, 12s) linear infinite;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform, opacity;
+  transform: translateY(-10vh);
+}
+
+.snowflake--sm {
+  font-size: 10px;
+}
+
+.snowflake--md {
+  font-size: 13px;
+}
+
+.nowflake--lg {
+  font-size: 16px;
+}
+
+.sf-1 {
+  left: 6%;
+  top: -5vh;
+  --dur: 12s;
+}
+
+.sf-2 {
+  left: 22%;
+  top: -10vh;
+  --dur: 9s;
+  font-size: 14px;
+}
+
+.sf-3 {
+  left: 48%;
+  top: -8vh;
+  --dur: 11s;
+  font-size: 10px;
+}
+
+.sf-4 {
+  left: 72%;
+  top: -6vh;
+  --dur: 14s;
+  font-size: 13px;
+}
+
+.sf-5 {
+  left: 88%;
+  top: -12vh;
+  --dur: 10s;
+  font-size: 11px;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.7;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snowflake {
+    animation: none;
+    transform: none;
+  }
+}
