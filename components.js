@@ -13,7 +13,6 @@ const headerHTML = `
                 <a href="index.html#about" class="text-sm text-slate-300 hover:text-white transition-colors">About</a>
                 <a href="projects.html" class="text-sm text-slate-300 hover:text-white transition-colors">Projects</a>
                 <a href="projects.html#games" class="text-sm text-slate-300 hover:text-white transition-colors">Games</a>
-                <a href="index.html#resume" class="text-sm text-slate-300 hover:text-white transition-colors">Resume</a>
                 <a href="index.html#contact" class="text-sm text-slate-300 hover:text-white transition-colors">Contact</a>
             </div>
 
@@ -29,7 +28,6 @@ const headerHTML = `
             <a href="index.html#about" class="block py-2 px-4 text-slate-300 hover:text-white transition-colors">About</a>
             <a href="projects.html" class="block py-2 px-4 text-slate-300 hover:text-white transition-colors">Projects</a>
             <a href="projects.html#games" class="block py-2 px-4 text-slate-300 hover:text-white transition-colors">Games</a>
-            <a href="index.html#resume" class="block py-2 px-4 text-slate-300 hover:text-white transition-colors">Resume</a>
             <a href="index.html#contact" class="block py-2 px-4 text-slate-300 hover:text-white transition-colors">Contact</a>
         </div>
     </div>
