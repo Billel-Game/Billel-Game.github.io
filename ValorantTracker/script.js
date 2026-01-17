@@ -441,14 +441,14 @@ function displayAccounts() {
 
             if (account.loginUsername) {
                 html += '<div class="account-info">';
-                html += '<span class="info-label">Username:</span>';
+                html += '<span class="info-label">Username: </span>';
                 html += '<span class="info-value">' + account.loginUsername + '</span>';
                 html += '</div>';
             }
 
             if (account.loginPassword) {
                 html += '<div class="account-info password-row">';
-                html += '<span class="info-label">Password:</span>';
+                html += '<span class="info-label">Password: </span>';
                 html += '<span class="password-display">';
                 html += '<span class="password-hidden" id="pass-' + account.id + '">••••••••</span>';
                 html += '<span class="password-shown" id="pass-show-' + account.id + '" style="display: none;">' + account.loginPassword + '</span>';
