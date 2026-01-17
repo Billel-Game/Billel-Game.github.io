@@ -1,3 +1,28 @@
+// Batch refresh accounts in rotation to avoid API rate limits
+let batchRefreshIndex = 0;
+const BATCH_SIZE = 3; // Number of accounts to refresh per minute
+let batchIntervalId = null;
+
+function startBatchRefresh() {
+    if (batchIntervalId) clearInterval(batchIntervalId);
+    batchIntervalId = setInterval(async () => {
+        if (!accounts || accounts.length === 0) return;
+        const start = batchRefreshIndex * BATCH_SIZE;
+        const end = start + BATCH_SIZE;
+        const batch = accounts.slice(start, end);
+        for (const account of batch) {
+            if (account && account.id) {
+                await refreshSingleAccount(account.id);
+            }
+        }
+        batchRefreshIndex++;
+        if (start + BATCH_SIZE >= accounts.length) {
+            batchRefreshIndex = 0;
+        }
+    }, 60000); // 1 minute interval
+}
+
+// Call startBatchRefresh() after accounts are loaded
 // Initialize Supabase Client
 const SUPABASE_URL = 'https://rqtmirtcubjznmjvvgdu.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJxdG1pcnRjdWJqem5tanZ2Z2R1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg2NTgxOTAsImV4cCI6MjA4NDIzNDE5MH0.qIj64wpiUREBMS0wtzcVF5NMI5-iKl7Vt4b8NkhdDAI';
@@ -157,6 +182,9 @@ async function loadAccounts() {
     }));
     
     displayAccounts();
+
+    // Start batch refresh after loading accounts
+    startBatchRefresh();
 }
 
 // Save API key
@@ -323,48 +351,6 @@ async function refreshSingleAccount(id) {
     }
 }
 
-// Refresh all ranks
-async function refreshAllRanks() {
-    showNotification('Refreshing all ranks (10 per minute limit)...');
-    
-    let count = 0;
-    for (let account of accounts) {
-        if (!account.manual && account.game_name && account.tag_line) {
-            try {
-                const rankData = await fetchRank(account.game_name, account.tag_line, account.region);
-                
-                // Update in Supabase
-                await supabase
-                    .from('accounts')
-                    .update({
-                        rank: rankData.currentRank,
-                        peak_rank: rankData.peakRank,
-                        account_level: rankData.accountLevel,
-                        last_updated: new Date().toISOString()
-                    })
-                    .eq('id', account.id);
-                
-                // Update local copy
-                account.rank = rankData.currentRank;
-                account.account_level = rankData.accountLevel;
-                account.peak_rank = rankData.peakRank;
-                account.last_updated = new Date().toISOString();
-                count++;
-                
-                // Pause every 10 requests to avoid rate limit
-                if (count % 10 === 0) {
-                    showNotification('Rate limit reached, waiting 60 seconds...', 'warning');
-                    await new Promise(resolve => setTimeout(resolve, 61000));
-                }
-            } catch (error) {
-                console.error('Failed to update ' + account.username + ':', error);
-            }
-        }
-    }
-    
-    displayAccounts();
-    showNotification('All ranks updated!');
-}
 
 // Get rank color class
 function getRankClass(rank) {

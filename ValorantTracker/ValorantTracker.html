@@ -78,6 +78,11 @@
                             <span id="btnText">Add Account</span>
                             <span id="btnLoader" class="loader" style="display: none;"></span>
                         </button>
+                        <div class="dropdown-controls" style="margin-top: 1em;">
+                            <button class="btn-secondary" type="button" onclick="exportAccounts()">Export Data</button>
+                            <button class="btn-secondary" type="button" onclick="document.getElementById('importFile').click()">Import Data</button>
+                            <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importAccounts(event)">
+                        </div>
                     </form>
                 </details>
             </div>
@@ -85,10 +90,7 @@
                 <div class="section-header">
                     <h2>Your Accounts (<span id="accountCount">0</span>)</h2>
                     <div class="header-controls">
-                        <button class="btn-secondary" onclick="exportAccounts()">Export Data</button>
-                        <button class="btn-secondary" onclick="document.getElementById('importFile').click()">Import Data</button>
-                        <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importAccounts(event)">
-                        <button class="btn-secondary" onclick="refreshAllRanks()">Refresh All Ranks</button>
+                        <!-- Export/Import buttons moved to Add Account dropdown -->
                     </div>
                 </div>
                 <div id="accountsList">
