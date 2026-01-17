@@ -121,10 +121,10 @@ const btnLoader = document.getElementById('btnLoader');
 
 // Load accounts from localStorage
 let accounts = [];
-let apiKey = localStorage.getItem('henrikApiKey') || '';
+let apiKey = 'HDEV-c5968dec-ce49-43fa-b945-ab007cf333f8';
 
-// Show API key if exists
-if (apiKey && document.getElementById('apiKeyInput')) {
+// Optionally show API key in input if you want to display it (not required anymore)
+if (document.getElementById('apiKeyInput')) {
     document.getElementById('apiKeyInput').value = apiKey;
 }
 
@@ -160,13 +160,9 @@ async function loadAccounts() {
 }
 
 // Save API key
+// saveApiKey is now unnecessary since the key is hardcoded
 function saveApiKey() {
-    const key = document.getElementById('apiKeyInput').value.trim();
-    if (key) {
-        apiKey = key;
-        localStorage.setItem('henrikApiKey', key);
-        showNotification('API key saved! You can now auto-fetch ranks.');
-    }
+    showNotification('API key is now set automatically.');
 }
 
 // Auto-fetch form submit
@@ -241,7 +237,7 @@ function saveAccounts() {
 // Fetch rank using Henrik API with auth
 async function fetchRank(gameName, tagLine, region) {
     try {
-        const headers = apiKey ? { 'Authorization': apiKey } : {};
+        const headers = { 'Authorization': apiKey };
         
         const apiUrl = 'https://api.henrikdev.xyz/valorant/v2/mmr/' + region + '/' + encodeURIComponent(gameName) + '/' + encodeURIComponent(tagLine);
         
@@ -307,7 +303,7 @@ async function refreshSingleAccount(id) {
     try {
         const rankData = await fetchRank(account.gameName, account.tagLine, account.region);
         
-        const { error } = await supabase
+        const { error } = await db
             .from('accounts')
             .update({
                 rank: rankData.currentRank,
@@ -585,13 +581,7 @@ async function importAccounts(event) {
                     }
                     
                     // Import API key if exists
-                    if (data.apiKey) {
-                        apiKey = data.apiKey;
-                        localStorage.setItem('henrikApiKey', apiKey);
-                        if (document.getElementById('apiKeyInput')) {
-                            document.getElementById('apiKeyInput').value = apiKey;
-                        }
-                    }
+                    // Ignore imported apiKey, always use the default
                     
                     await loadAccounts();
                     showNotification('Imported ' + importedCount + ' new accounts!');
