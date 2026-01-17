@@ -412,7 +412,7 @@ function displayAccounts() {
         return aIndex - bIndex;
     });
     
-    // Build HTML with region sections
+    // Build HTML with region sections (collapsible)
     let html = '';
     sortedRegions.forEach(region => {
         const regionAccounts = accountsByRegion[region];
@@ -425,11 +425,11 @@ function displayAccounts() {
             'br': 'Brazil',
             'unknown': 'Unknown Region'
         };
-        
-        html += '<div class="region-section">';
-        html += '<h3 class="region-title">' + regionNames[region] + ' (' + regionAccounts.length + ')</h3>';
+
+        html += '<details class="region-section" open>';
+        html += '<summary class="region-title">' + regionNames[region] + ' (' + regionAccounts.length + ')</summary>';
         html += '<div class="accounts-grid">';
-        
+
         regionAccounts.forEach(account => {
             html += '<div class="account-card">';
             html += '<div class="account-header">';
@@ -438,14 +438,14 @@ function displayAccounts() {
                 html += '<span class="account-level">' + account.accountLevel + '</span>';
             }
             html += '</div>';
-            
+
             if (account.loginUsername) {
                 html += '<div class="account-info">';
                 html += '<span class="info-label">Username:</span>';
                 html += '<span class="info-value">' + account.loginUsername + '</span>';
                 html += '</div>';
             }
-            
+
             if (account.loginPassword) {
                 html += '<div class="account-info password-row">';
                 html += '<span class="info-label">Password:</span>';
@@ -458,27 +458,27 @@ function displayAccounts() {
                 html += '</button>';
                 html += '</div>';
             }
-            
+
             html += '<div class="account-info">';
             html += '<span class="info-label">Rank:</span>';
             html += '<span class="rank-badge ' + getRankClass(account.rank) + '">' + account.rank + '</span>';
             html += '</div>';
-            
+
             if (account.peakRank) {
                 html += '<div class="account-info">';
                 html += '<span class="info-label">Peak:</span>';
                 html += '<span class="rank-badge peak-badge ' + getRankClass(account.peakRank) + '">' + account.peakRank + '</span>';
                 html += '</div>';
             }
-            
+
             if (!account.manual && account.gameName && account.tagLine) {
                 html += '<button class="btn-refresh-single" onclick="refreshSingleAccount(' + account.id + ')">Refresh Rank</button>';
             }
             html += '<button class="btn-delete" onclick="deleteAccount(' + account.id + ')">Delete Account</button>';
             html += '</div>';
         });
-        
-        html += '</div></div>';
+
+        html += '</div></details>';
     });
     
     accountsList.innerHTML = html;

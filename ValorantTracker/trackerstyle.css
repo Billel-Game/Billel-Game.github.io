@@ -1,9 +1,47 @@
+/* Collapsible region summary styling */
+.region-section > summary.region-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    background: rgba(51, 65, 85, 0.7);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    outline: none;
+    transition: background 0.2s;
+}
+.region-section[open] > summary.region-title {
+    background: rgba(51, 65, 85, 0.95);
+}
+.region-section {
+    margin-bottom: 2.5rem;
+}
 /* Responsive grid for account cards */
+/* Responsive grid for account cards: 1 on mobile, 2 on small, 3 on medium, 4 on large screens */
 .accounts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.5rem;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2.5rem;
+    margin-top: 2rem;
+    justify-items: center;
+    align-items: stretch;
+}
+
+@media (min-width: 600px) {
+    .accounts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 900px) {
+    .accounts-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (min-width: 1200px) {
+    .accounts-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 @media (max-width: 600px) {
@@ -94,7 +132,7 @@
 }
 
 body {
-    background: var(--background);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
     color: var(--text);
     font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
@@ -102,11 +140,11 @@ body {
 }
 
 .container {
-    max-width: 700px;
+    max-width: 1400px;
     margin: 40px auto;
-    background: var(--surface);
+    background: transparent;
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    box-shadow: none;
     padding: 32px 24px 24px 24px;
 }
 
@@ -256,10 +294,10 @@ header h1 {
 }
 
 .account-card {
-    background: rgba(30, 41, 59, 0.85) !important; /* glassy slate-800/90 */
-    border-radius: 1rem !important; /* match Tailwind rounded-xl */
-    box-shadow: 0 4px 24px 0 rgba(30, 41, 59, 0.25), 0 1.5px 6px 0 rgba(0,0,0,0.10) !important;
-    border: 2px solid #a78bfa !important; /* purple-400 border */
+    background: rgba(30, 41, 59, 0.85) !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 8px 32px 0 rgba(59, 130, 246, 0.18), 0 2px 8px 0 rgba(0,0,0,0.12) !important;
+    border: 2px solid #a78bfa !important;
     padding: 1.5rem 1.25rem 1.25rem 1.25rem !important;
     margin-bottom: 1.5rem !important;
     display: flex;
@@ -267,6 +305,9 @@ header h1 {
     gap: 0.75rem;
     position: relative;
     transition: box-shadow 0.2s, border 0.2s, background 0.2s;
+    min-width: 280px;
+    max-width: 340px;
+    width: auto;
 }
 
 .account-card:hover {
