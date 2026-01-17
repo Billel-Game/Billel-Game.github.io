@@ -1,3 +1,17 @@
+/* Responsive grid for account cards */
+.accounts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 600px) {
+    .accounts-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
 /* Rank badge colors */
 .rank-badge {
     display: inline-block;
