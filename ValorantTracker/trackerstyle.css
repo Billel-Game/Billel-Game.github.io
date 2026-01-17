@@ -1,0 +1,280 @@
+/* --- trackerstyle.css (renamed from styles.css) --- */
+:root {
+    --primary: #ff4655;
+    --secondary: #23272a;
+    --background: #181a1b;
+    --surface: #23272a;
+    --text: #fff;
+    --text-secondary: #b0b0b0;
+    --border: #333;
+    --accent: #00e5ff;
+    --danger: #ff4655;
+    --success: #00e676;
+    --warning: #ffc400;
+    --radius: 10px;
+    --shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 700px;
+    margin: 40px auto;
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 32px 24px 24px 24px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+    color: var(--primary);
+    margin-bottom: 0.2em;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 0.5em;
+}
+
+.btn-primary, .btn-secondary, .btn-logout {
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 4px 0;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #e63b4d;
+}
+
+.btn-secondary {
+    background: var(--accent);
+    color: #23272a;
+}
+
+.btn-secondary:hover {
+    background: #00b8d4;
+}
+
+.btn-logout {
+    background: var(--danger);
+    color: #fff;
+    float: right;
+    margin-top: -40px;
+}
+
+.btn-logout:hover {
+    background: #c62839;
+}
+
+.add-account-section {
+    margin-bottom: 32px;
+}
+
+.accounts-section {
+    margin-top: 32px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.header-controls > * {
+    margin-left: 8px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 9px 12px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: #23272a;
+    color: #fff;
+    font-size: 1rem;
+    margin-top: 2px;
+    box-sizing: border-box;
+}
+
+.form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.credentials-section {
+    background: #202225;
+    border-radius: var(--radius);
+    padding: 12px 16px 8px 16px;
+    margin-bottom: 16px;
+    margin-top: 8px;
+}
+
+.credentials-section h3 {
+    margin-top: 0;
+    font-size: 1.05rem;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+
+.loader {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--primary);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#accountsList {
+    margin-top: 12px;
+}
+
+.account-card {
+    background: #23272a;
+    border-radius: var(--radius);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+    padding: 18px 16px 12px 16px;
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+.account-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.account-header .rank {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.account-header .region {
+    font-size: 0.95rem;
+    color: var(--accent);
+    margin-left: 10px;
+}
+
+.account-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.account-actions button {
+    font-size: 0.95rem;
+    padding: 6px 14px;
+}
+
+.account-details {
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.account-credentials {
+    background: #181a1b;
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    margin-top: 8px;
+    font-size: 0.97rem;
+    color: #fff;
+    word-break: break-all;
+}
+
+.api-notice {
+    background: #23272a;
+    border-left: 4px solid var(--accent);
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+    color: var(--accent);
+    font-size: 0.98rem;
+}
+
+details[open] summary::after {
+    content: "▲";
+    float: right;
+    font-size: 0.8em;
+    margin-left: 8px;
+}
+
+details summary::after {
+    content: "▼";
+    float: right;
+    font-size: 0.8em;
+    margin-left: 8px;
+}
+
+details summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    outline: none;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 12px 2vw 12px 2vw;
+    }
+    .account-card {
+        padding: 12px 6px 8px 6px;
+    }
+    .credentials-section {
+        padding: 8px 6px 6px 6px;
+    }
+}
