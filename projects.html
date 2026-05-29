@@ -7,6 +7,33 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Import Map for Three.js modules -->
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+        "three/addons/controls/OrbitControls.js": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/controls/OrbitControls.js",
+        "three/addons/loaders/GLTFLoader.js": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/loaders/GLTFLoader.js"
+      }
+    }
+    </script>
+    <style>
+        .three-viewer-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: radial-gradient(circle at 50% 30%, #ffffff 0%, #efefef 55%, #e4e4e4 100%);
+        }
+        .three-viewer-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
     <!-- Header Component -->
@@ -203,27 +230,79 @@
                 <div class="w-20 h-1 bg-blue-500 mx-auto mb-12"></div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Example Model Card - You can duplicate this for more models -->
+                    <!-- 3D Model Card 1 - Ice Cream Base -->
                     <div class="bg-slate-800/50 border border-slate-700 rounded-lg overflow-hidden hover:border-orange-500/50 transition-all group flex flex-col">
-                        <div class="relative overflow-hidden aspect-video flex-shrink-0">
-                            <img src="Projects/Blender/LaptopRender.png"
-                                 alt="3D Model Render"
-                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60"></div>
+                        <div class="relative overflow-hidden aspect-video flex-shrink-0 bg-slate-900">
+                            <div class="three-viewer-container" data-model="IjsBase.glb" data-scale="1">
+                                <div class="three-viewer-loading" data-loading>Loading 3D Model...</div>
+                            </div>
+                            <div class="absolute inset-0 pointer-events-none opacity-0"></div>
                             <div class="absolute top-3 right-3">
                                 <span class="bg-slate-900/80 text-white text-xs px-3 py-1 rounded-full">3D Model</span>
                             </div>
                         </div>
 
                         <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-xl font-bold text-white mb-2">Laptop</h3>
+                            <h3 class="text-xl font-bold text-white mb-2">Bagnum</h3>
                             <p class="text-slate-400 text-sm mb-4 flex-grow">
-                                Description of your 3D model or render.
+                                Interactive 3D ice cream bag model. Rotate with mouse, zoom with scroll wheel.
                             </p>
 
                             <div class="flex flex-wrap gap-2 mb-4">
                                 <span class="border border-orange-500/30 text-orange-400 text-xs px-3 py-1 rounded-full">Blender</span>
                                 <span class="border border-orange-500/30 text-orange-400 text-xs px-3 py-1 rounded-full">3D Modeling</span>
+                                <span class="border border-orange-500/30 text-orange-400 text-xs px-3 py-1 rounded-full">Three.js</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3D Model Card 2 - Glasinlood -->
+                    <div class="bg-slate-800/50 border border-slate-700 rounded-lg overflow-hidden hover:border-orange-500/50 transition-all group flex flex-col">
+                        <div class="relative overflow-hidden aspect-video flex-shrink-0 bg-slate-900">
+                            <div class="three-viewer-container" data-model="glasinlood.glb" data-scale="1">
+                                <div class="three-viewer-loading" data-loading>Loading 3D Model...</div>
+                            </div>
+                            <div class="absolute inset-0 pointer-events-none opacity-0"></div>
+                            <div class="absolute top-3 right-3">
+                                <span class="bg-slate-900/80 text-white text-xs px-3 py-1 rounded-full">3D Model</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-white mb-2">Placeholder</h3>
+                            <p class="text-slate-400 text-sm mb-4 flex-grow">
+                                Lorem ipsum dolor sit amet consectetur adipisicing.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="border border-orange-500/30 text-orange-400 text-xs px-3 py-1 rounded-full">Blender</span>
+                                <span class="border border-orange-500/30 text-orange-400 text-xs px-3 py-1 rounded-full">3D Modeling</span>
+                                <span class="border border-orange-500/30 text-orange-400 text-xs px-3 py-1 rounded-full">Three.js</span>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="bg-slate-800/50 border border-slate-700 rounded-lg overflow-hidden hover:border-orange-500/50 transition-all group flex flex-col">
+                        <div class="relative overflow-hidden aspect-video flex-shrink-0 bg-slate-900">
+                            <div class="three-viewer-container" data-model="Laptop.glb" data-scale="1">
+                                <div class="three-viewer-loading" data-loading>Loading 3D Model...</div>
+                            </div>
+                            <div class="absolute inset-0 pointer-events-none opacity-0"></div>
+                            <div class="absolute top-3 right-3">
+                                <span class="bg-slate-900/80 text-white text-xs px-3 py-1 rounded-full">3D Model</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-white mb-2">Placeholder</h3>
+                            <p class="text-slate-400 text-sm mb-4 flex-grow">
+                                Lorem ipsum dolor sit amet consectetur adipisicing.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="border border-orange-500/30 text-orange-400 text-xs px-3 py-1 rounded-full">Blender</span>
+                                <span class="border border-orange-500/30 text-orange-400 text-xs px-3 py-1 rounded-full">3D Modeling</span>
+                                <span class="border border-orange-500/30 text-orange-400 text-xs px-3 py-1 rounded-full">Three.js</span>
                             </div>
                         </div>
                     </div>
@@ -238,5 +317,45 @@
 
     <!-- Load Components -->
     <script src="components.js"></script>
+    <script type="module" src="three-viewer.js"></script>
+
+    <!-- Initialize 3D Viewers -->
+    <script type="module">
+        // Wait for ThreeViewer to be available globally
+        async function waitForThreeViewer() {
+            let attempts = 0;
+            while (typeof window.ThreeViewer === 'undefined' && attempts < 50) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+                attempts++;
+            }
+
+            if (typeof window.ThreeViewer === 'undefined') {
+                console.error("ThreeViewer failed to load");
+                return;
+            }
+
+            console.log("ThreeViewer loaded!");
+
+            const viewerContainers = document.querySelectorAll(".three-viewer-container");
+            console.log("Found viewers:", viewerContainers.length);
+
+            viewerContainers.forEach(container => {
+                const modelPath = container.getAttribute("data-model");
+                const scale = parseFloat(container.getAttribute("data-scale")) || 1;
+
+                console.log("Creating viewer for:", modelPath);
+
+                if (modelPath) {
+                    new window.ThreeViewer(container, modelPath, {
+                        autoRotate: true,
+                        scale: scale
+                    });
+                }
+            });
+        }
+
+        waitForThreeViewer();
+    </script>
+
 </body>
 </html>
