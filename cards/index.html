@@ -8,7 +8,39 @@
       content="Browse a personal trading card collection and its marketplace prices."
     />
     <title>Vault. — Trading Card Collection</title>
-    <script type="module" crossorigin src="/cards/assets/index-Cd628q77.js"></script>
+    <script>
+      window.cardsDefaultReady = (async () => {
+        const collectionKey = "localcards.collection.v2";
+        const legacyKey = "localcards.collection.v1";
+        const existingCollection = localStorage.getItem(collectionKey);
+
+        try {
+          const response = await fetch("./cards.json");
+          if (!response.ok) throw new Error(`Could not load cards.json (${response.status})`);
+          const cards = await response.json();
+          if (!Array.isArray(cards) || cards.length === 0) throw new Error("cards.json contains no cards");
+          if (existingCollection) {
+            const saved = JSON.parse(existingCollection);
+            const isDefaultCollection =
+              saved.filename === "Demo collection" ||
+              saved.filename === "My card collection";
+            if (!isDefaultCollection) return;
+          } else if (localStorage.getItem(legacyKey)) {
+            return;
+          }
+          localStorage.setItem(collectionKey, JSON.stringify({
+            cards,
+            filename: "My card collection"
+          }));
+        } catch (error) {
+          console.warn(error);
+        }
+      })();
+    </script>
+    <script type="module">
+      await window.cardsDefaultReady;
+      await import("./assets/index-Cd628q77.js");
+    </script>
     <link rel="stylesheet" crossorigin href="/cards/assets/index-Cz6mAhzd.css">
   </head>
   <body>
