@@ -86,6 +86,7 @@ function renderScanSettings() {
 
 async function openScanner() {
   $("scanner-dialog").showModal();
+  loadNameList(scanner.prefs.game);
   renderScanSettings();
   renderScanResults();
   renderScanSession();
@@ -180,13 +181,164 @@ function stripRect(canvas, strip) {
   };
 }
 
-async function readCard(canvas, game) {
+// pageSegMode "7" = a single line, "11" = sparse text anywhere in the region.
+async function readRegion(canvas, strip, pageSegMode) {
   const worker = await getOcrWorker();
-  await worker.setParameters({ tessedit_pageseg_mode: "7" }); // a single line
-  const name = (await worker.recognize(canvas, { rectangle: stripRect(canvas, NAME_STRIP) })).data.text;
-  await worker.setParameters({ tessedit_pageseg_mode: "11" }); // sparse text
-  const code = (await worker.recognize(canvas, { rectangle: stripRect(canvas, CODE_STRIPS[game]) })).data.text;
-  return { name, code };
+  await worker.setParameters({ tessedit_pageseg_mode: pageSegMode });
+  return (await worker.recognize(canvas, { rectangle: stripRect(canvas, strip) })).data.text;
+}
+
+async function readCard(canvas, game) {
+  return {
+    name: await readRegion(canvas, NAME_STRIP, "7"),
+    code: await readRegion(canvas, CODE_STRIPS[game], "11")
+  };
+}
+
+// Fallback when the card sits a little off the guide: read the whole top of the card.
+const TOP_REGION = { left: 0, top: 0, width: 1, height: 0.2 };
+
+/* ---------- Snapping OCR text to real card names ---------- */
+
+// data/names/<game>.json is built by scripts/build-name-lists.mjs.
+const nameLists = new Map();
+const MIN_NAME_SCORE = 0.75; // below this, a read is treated as noise
+
+function normalizeName(value) {
+  return String(value || "").toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function loadNameList(game) {
+  if (!nameLists.has(game)) {
+    nameLists.set(game, fetch(`./data/names/${game}.json`)
+      .then((response) => (response.ok ? response.json() : []))
+      .then((names) => {
+        // exact: normalized name → name. grams: two-letter pair → ids of names containing it,
+        // used to pick a few dozen plausible names before the (slow) edit distance.
+        const entries = names.map((name) => ({ name, key: normalizeName(name) }));
+        const exact = new Map(entries.map((entry) => [entry.key, entry.name]));
+        const grams = new Map();
+        entries.forEach((entry, id) => {
+          bigrams(entry.key).forEach((gram) => {
+            if (!grams.has(gram)) grams.set(gram, []);
+            grams.get(gram).push(id);
+          });
+        });
+        return { entries, exact, grams, counts: new Uint16Array(entries.length) };
+      })
+      .catch(() => {
+        nameLists.delete(game);
+        return [];
+      }));
+  }
+  return nameLists.get(game);
+}
+
+// Levenshtein distance that gives up once it exceeds maxDistance (returns Infinity).
+// Runs ~50k times per scan, so it reuses two typed-array rows instead of allocating.
+let distanceRows = [new Uint16Array(256), new Uint16Array(256)];
+function boundedDistance(a, b, maxDistance) {
+  if (Math.abs(a.length - b.length) > maxDistance) return Infinity;
+  if (b.length + 1 > distanceRows[0].length) distanceRows = [new Uint16Array(b.length + 1), new Uint16Array(b.length + 1)];
+  let [previous, current] = distanceRows;
+  for (let j = 0; j <= b.length; j += 1) previous[j] = j;
+  for (let i = 1; i <= a.length; i += 1) {
+    current[0] = i;
+    let rowMin = i;
+    const char = a.charCodeAt(i - 1);
+    for (let j = 1; j <= b.length; j += 1) {
+      const substitute = previous[j - 1] + (char === b.charCodeAt(j - 1) ? 0 : 1);
+      const value = Math.min(previous[j] + 1, current[j - 1] + 1, substitute);
+      current[j] = value;
+      if (value < rowMin) rowMin = value;
+    }
+    if (rowMin > maxDistance) return Infinity;
+    [previous, current] = [current, previous];
+  }
+  return previous[b.length];
+}
+
+// Every run of up to 6 consecutive words, so junk around the name doesn't matter.
+// coverage = how much of its line the run spans.
+function nameCandidates(text) {
+  const spans = new Map();
+  String(text || "").split(/\r?\n/).forEach((line) => {
+    const words = normalizeName(line).split(" ").filter(Boolean);
+    const lineLength = words.join(" ").length;
+    for (let start = 0; start < words.length; start += 1) {
+      for (let end = start + 1; end <= Math.min(words.length, start + 6); end += 1) {
+        const span = words.slice(start, end).join(" ");
+        const coverage = span.length / lineLength;
+        if (span.replace(/ /g, "").length >= 3 && coverage > (spans.get(span) || 0)) spans.set(span, coverage);
+      }
+    }
+  });
+  return [...spans.entries()].map(([span, coverage]) => ({ span, coverage }));
+}
+
+// Best { name, score } among real card names; score is 0..1 (1 = exact).
+// Ranking also rewards covering the whole line, so one stray word that happens to be
+// a real card ("Dragon") can't beat a slightly misread full name.
+function bigrams(key) {
+  const grams = new Set();
+  for (let index = 0; index < key.length - 1; index += 1) grams.add(key.slice(index, index + 2));
+  return grams;
+}
+
+async function bestNameMatch(game, text) {
+  const list = await loadNameList(game);
+  let best = { name: "", score: 0, rank: 0 };
+  const consider = (name, score, coverage) => {
+    const rank = score * (0.7 + 0.3 * coverage);
+    if (rank > best.rank) best = { name, score, rank };
+  };
+  for (const { span, coverage } of nameCandidates(text)) {
+    if (list.exact.has(span)) {
+      consider(list.exact.get(span), 1, coverage);
+      continue;
+    }
+    const maxDistance = Math.floor(span.length * (1 - MIN_NAME_SCORE));
+    // Each edit breaks at most two letter pairs, so a real match shares at least this many.
+    const spanGrams = bigrams(span);
+    const needed = spanGrams.size - 2 * maxDistance;
+    if (needed < 1) continue;
+    const touched = [];
+    spanGrams.forEach((gram) => {
+      (list.grams.get(gram) || []).forEach((id) => {
+        if (list.counts[id] === 0) touched.push(id);
+        list.counts[id] += 1;
+      });
+    });
+    touched.forEach((id) => {
+      if (list.counts[id] >= needed) {
+        const entry = list.entries[id];
+        const distance = boundedDistance(span, entry.key, maxDistance);
+        if (distance !== Infinity) consider(entry.name, 1 - distance / Math.max(span.length, entry.key.length), coverage);
+      }
+      list.counts[id] = 0;
+    });
+  }
+  return best;
+}
+
+// Real names containing every typed word, shortest first ("blue eyes" → "Blue-Eyes …").
+async function namesContaining(game, text) {
+  const words = normalizeName(text).split(" ").filter(Boolean);
+  if (!words.length) return [];
+  return (await loadNameList(game)).entries
+    .filter((entry) => words.every((word) => entry.key.includes(word)))
+    .sort((a, b) => a.key.length - b.key.length)
+    .map((entry) => entry.name);
+}
+
+// 0..1 similarity of two names (1 = identical after normalizing).
+function nameSimilarity(a, b) {
+  const x = normalizeName(a);
+  const y = normalizeName(b);
+  if (!x || !y) return 0;
+  const longest = Math.max(x.length, y.length);
+  return 1 - boundedDistance(x, y, longest) / longest;
 }
 
 /* ---------- Parsing OCR text ---------- */
@@ -214,8 +366,9 @@ function parseYgoCode(text) {
   return `${match[1]}-${match[2]}${digits}`;
 }
 
+// name: a real card name (exact: true) or typed text; read: the raw OCR'd name text.
 function parseHints(game, nameText, codeText) {
-  const hints = { name: cleanCardName(nameText), code: "", number: "", setCode: "" };
+  const hints = { name: "", exact: false, read: cleanCardName(nameText), code: "", number: "", setCode: "" };
   if (game === "ygo") hints.code = parseYgoCode(codeText);
   if (game === "pok" || game === "mtg") {
     const fraction = String(codeText || "").match(/\b0*(\d{1,4})\s*\/\s*0*(\d{1,4})\b/);
@@ -232,11 +385,17 @@ function parseHints(game, nameText, codeText) {
   return hints;
 }
 
-// Typed search: a Yu-Gi-Oh! set code anywhere in the text is used as the code.
-function hintsFromText(game, text) {
+// Typed search: a Yu-Gi-Oh! set code anywhere in the text is used as the code. A close
+// match to a real name is used exactly; otherwise the text goes to the API's own search
+// (so partial names like "blue eyes" still work).
+async function hintsFromText(game, text) {
   const code = game === "ygo" ? parseYgoCode(text) : "";
-  const name = code ? text.replace(new RegExp(code.replace("-", "\\s?-\\s?"), "i"), "").trim() : text.trim();
-  return { name, code, number: "", setCode: "" };
+  const typed = code ? text.replace(new RegExp(code.replace("-", "\\s?-\\s?"), "i"), "").trim() : text.trim();
+  const match = typed ? await bestNameMatch(game, typed) : { score: 0 };
+  if (match.score >= 0.85) return { name: match.name, exact: true, read: typed, code, number: "", setCode: "", typed: true };
+  // Partial name: use the shortest real name containing all typed words.
+  const [contained] = typed ? await namesContaining(game, typed) : [];
+  return { name: contained || typed, exact: Boolean(contained), read: typed, code, number: "", setCode: "", typed: true };
 }
 
 /* ---------- Card database lookups ---------- */
@@ -268,15 +427,18 @@ function mtgCandidate(card, hints) {
 
 async function lookupMtg(hints) {
   const results = [];
-  const named = hints.name ? await getJson(`https://api.scryfall.com/cards/named?fuzzy=${encodeURIComponent(hints.name)}`) : null;
-  if (hints.setCode && hints.number) {
+  // Scanned names are already real names; only typed text needs Scryfall's fuzzy search.
+  const named = !hints.name ? null
+    : hints.exact ? { name: hints.name }
+      : await getJson(`https://api.scryfall.com/cards/named?fuzzy=${encodeURIComponent(hints.name)}`);
+  if (named && hints.setCode && hints.number) {
     const exact = await getJson(`https://api.scryfall.com/cards/${encodeURIComponent(hints.setCode.toLowerCase())}/${encodeURIComponent(hints.number)}`);
     // A misread digit points at a different card; only trust it if the name agrees.
-    if (exact && (!named || exact.name === named.name)) results.push(mtgCandidate(exact, hints));
+    if (exact && (exact.name === named.name || exact.name.startsWith(`${named.name} //`))) results.push(mtgCandidate(exact, hints));
   }
   if (!named) return results;
   const prints = await getJson(`https://api.scryfall.com/cards/search?unique=prints&order=released&q=${encodeURIComponent(`!"${named.name}" game:paper`)}`);
-  (prints?.data || [named]).forEach((card) => {
+  (prints?.data || []).forEach((card) => {
     if (!results.some((item) => item.setCode === card.set.toUpperCase() && item.number === card.collector_number)) {
       results.push(mtgCandidate(card, hints));
     }
@@ -303,13 +465,15 @@ function ygoCandidate(card, set, hints) {
 async function lookupYgo(hints) {
   if (hints.code) {
     const info = await getJson(`https://db.ygoprodeck.com/api/v7/cardsetsinfo.php?setcode=${encodeURIComponent(hints.code)}`);
-    if (info?.name) {
-      return [ygoCandidate({ id: info.id, name: info.name }, info, hints)];
-    }
+    // A misread code is another real card, so the code's card must agree with the name.
+    // Typed codes are trusted as-is.
+    const agrees = info?.name && (hints.typed
+      || (hints.exact ? info.name === hints.name : nameSimilarity(info.name, hints.read) >= 0.6));
+    if (agrees) return [ygoCandidate({ id: info.id, name: info.name }, info, hints)];
   }
   if (!hints.name) return [];
   const exact = await getJson(`https://db.ygoprodeck.com/api/v7/cardinfo.php?name=${encodeURIComponent(hints.name)}`);
-  const result = exact || await getJson(`https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${encodeURIComponent(hints.name)}`);
+  const result = exact || (hints.exact ? null : await getJson(`https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${encodeURIComponent(hints.name)}`));
   const cards = (result?.data || []).slice(0, 3);
   return cards.flatMap((card) => (card.card_sets || []).map((set) => ygoCandidate(card, set, hints))).slice(0, 40);
 }
@@ -317,7 +481,10 @@ async function lookupYgo(hints) {
 async function lookupPokemon(hints) {
   if (!hints.name) return [];
   let list = await getJson(`https://api.tcgdex.net/v2/en/cards?name=${encodeURIComponent(hints.name)}`) || [];
-  if (!list.length && hints.name.includes(" ")) {
+  if (hints.exact) {
+    // TCGdex's name filter is "contains"; a scanned name must match exactly.
+    list = list.filter((card) => card.name.toLowerCase() === hints.name.toLowerCase());
+  } else if (!list.length && hints.name.includes(" ")) {
     list = await getJson(`https://api.tcgdex.net/v2/en/cards?name=${encodeURIComponent(hints.name.split(" ")[0])}`) || [];
   }
   if (hints.number) {
@@ -361,8 +528,19 @@ async function scanCanvas(canvas) {
     else setScanStatus("Reading card…");
     const text = await readCard(canvas, game);
     const hints = parseHints(game, text.name, text.code);
-    if (!hints.name && !hints.code) {
-      setScanStatus("Can't read it yet. Fill the frame, avoid glare, hold steady.");
+    let match = await bestNameMatch(game, text.name);
+    if (match.score < MIN_NAME_SCORE) {
+      const wider = await bestNameMatch(game, await readRegion(canvas, TOP_REGION, "11"));
+      if (wider.rank > match.rank) match = wider;
+    }
+    if (match.score >= MIN_NAME_SCORE) {
+      hints.name = match.name;
+      hints.exact = true;
+    } else if (!hints.code) {
+      // Show what was read so a bad angle or glare is easy to spot.
+      setScanStatus(hints.read
+        ? `Read “${hints.read}”, which isn't a card name. Fill the frame, avoid glare.`
+        : "Can't read the name yet. Fill the frame, avoid glare, hold steady.");
       return false;
     }
     return await searchAndShow(game, hints);
@@ -375,7 +553,7 @@ async function scanCanvas(canvas) {
 }
 
 async function searchAndShow(game, hints) {
-  const label = hints.code || hints.name;
+  const label = hints.name || hints.code || hints.read;
   const key = `${game}|${hints.name}|${hints.code}|${hints.number}|${hints.setCode}`;
   if (key === scanner.lastKey && scanner.results.length) return true;
   setScanStatus(`Looking up “${label}”…`);
@@ -516,6 +694,7 @@ $("scanner-dialog").addEventListener("close", closeScanner);
 
 $("scan-game").addEventListener("change", (event) => {
   scanner.prefs.game = event.target.value;
+  loadNameList(scanner.prefs.game);
   saveScanPrefs();
   renderScanSettings();
   resumeScanning(600);
@@ -577,7 +756,7 @@ $("scan-search-form").addEventListener("submit", async (event) => {
   clearTimeout(scanner.timer);
   scanner.lastKey = "";
   try {
-    scanner.paused = await searchAndShow(scanner.prefs.game, hintsFromText(scanner.prefs.game, text));
+    scanner.paused = await searchAndShow(scanner.prefs.game, await hintsFromText(scanner.prefs.game, text));
   } catch (error) {
     setScanStatus(`Search failed: ${error.message}`);
   }
