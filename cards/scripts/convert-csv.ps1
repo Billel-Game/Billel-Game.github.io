@@ -2,7 +2,7 @@ param(
     [Parameter(Mandatory = $true)]
     [string]$CsvPath,
 
-    [string]$OutputPath = "cards.json"
+    [string]$OutputPath = (Join-Path $PSScriptRoot "..\data\cards.json")
 )
 
 $resolvedCsvPath = (Resolve-Path $CsvPath).Path

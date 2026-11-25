@@ -1,0 +1,759 @@
+{
+  "source": "PriceCharting",
+  "currency": "USD",
+  "condition": "Ungraded",
+  "generatedAt": "2026-11-25T10:11:27.017Z",
+  "prices": {
+    "ygo|ast-070|1st": {
+      "usd": 0.41,
+      "url": "https://www.pricecharting.com/game/yugioh-ancient-sanctuary/3-hump-lacooda-1st-edition-ast-070",
+      "fetchedAt": "2026-11-25T09:56:55.547Z"
+    },
+    "ygo|ast-070|unl": {
+      "usd": 0.13,
+      "url": "https://www.pricecharting.com/game/yugioh-ancient-sanctuary/3-hump-lacooda-ast-070",
+      "fetchedAt": "2026-11-25T09:56:55.548Z"
+    },
+    "ygo|fet-en026|1st": {
+      "usd": 0.24,
+      "url": "https://www.pricecharting.com/game/yugioh-flaming-eternity/abare-ushioni-1st-edition-fet-en026",
+      "fetchedAt": "2026-11-25T09:56:57.233Z"
+    },
+    "ygo|mfc-056|unl": {
+      "usd": 0.41,
+      "url": "https://www.pricecharting.com/game/yugioh-magician%27s-force/aitsu-mfc-056",
+      "fetchedAt": "2026-11-25T09:56:59.023Z"
+    },
+    "ygo|mfc-062|unl": {
+      "usd": 0.61,
+      "url": "https://www.pricecharting.com/game/yugioh-magician%27s-force/amazoness-blowpiper-mfc-062",
+      "fetchedAt": "2026-11-25T09:57:00.844Z"
+    },
+    "ygo|mfc-063|unl": {
+      "usd": 1.49,
+      "url": "https://www.pricecharting.com/game/yugioh-magician%27s-force/amazoness-tiger-mfc-063",
+      "fetchedAt": "2026-11-25T09:57:02.577Z"
+    },
+    "ygo|tlm-en007|1st": {
+      "usd": 4.51,
+      "url": "https://www.pricecharting.com/game/yugioh-the-lost-millennium/ancient-gear-beast-1st-edition-tlm-en007",
+      "fetchedAt": "2026-11-25T09:57:04.537Z"
+    },
+    "ygo|ast-034|1st": {
+      "usd": 27.69,
+      "url": "https://www.pricecharting.com/game/yugioh-ancient-sanctuary/archlord-zerato-1st-edition-ast-034",
+      "fetchedAt": "2026-11-25T09:57:06.234Z"
+    },
+    "ygo|sod-en013|1st": {
+      "usd": 0.5,
+      "url": "https://www.pricecharting.com/game/yugioh-soul-of-the-duelist/armed-dragon-lv3-1st-edition-sod-en013",
+      "fetchedAt": "2026-11-25T09:57:08.052Z"
+    },
+    "ygo|sod-en013|unl": {
+      "usd": 0.46,
+      "url": "https://www.pricecharting.com/game/yugioh-soul-of-the-duelist/armed-dragon-lv3-sod-en013",
+      "fetchedAt": "2026-11-25T09:57:08.052Z"
+    },
+    "ygo|ast-064|unl": {
+      "usd": 0.25,
+      "url": "https://www.pricecharting.com/game/yugioh-ancient-sanctuary/aswan-apparition-ast-064",
+      "fetchedAt": "2026-11-25T09:57:09.856Z"
+    },
+    "ygo|ske-002|unl": {
+      "usd": 0.97,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-kaiba-evolution/battle-ox-ske-002",
+      "fetchedAt": "2026-11-25T09:57:11.641Z"
+    },
+    "ygo|sod-en017|unl": {
+      "usd": 1.7,
+      "url": "https://www.pricecharting.com/game/yugioh-soul-of-the-duelist/red-eyes-b-chick-sod-en017",
+      "fetchedAt": "2026-11-25T09:57:13.498Z"
+    },
+    "ygo|sye-025|unl": {
+      "usd": 1.05,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-yugi-evolution/black-luster-ritual-sye-025",
+      "fetchedAt": "2026-11-25T09:57:15.244Z"
+    },
+    "ygo|sye-024|1st": {
+      "usd": 11.49,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-yugi-evolution/black-luster-soldier-1st-edition-sye-024",
+      "fetchedAt": "2026-11-25T09:57:16.981Z"
+    },
+    "ygo|db1-en003|unl": {
+      "usd": 0.5,
+      "url": "https://www.pricecharting.com/game/yugioh-dark-beginning-1/black-pendant-db1-en003",
+      "fetchedAt": "2026-11-25T09:57:18.801Z"
+    },
+    "ygo|sdk-001|1st": {
+      "usd": 207.38,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-kaiba/blue-eyes-white-dragon-1st-edition-sdk-001",
+      "fetchedAt": "2026-11-25T09:57:20.476Z"
+    },
+    "ygo|ske-001|unl": {
+      "usd": 3.43,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-kaiba-evolution/blue-eyes-white-dragon-ske-001",
+      "fetchedAt": "2026-11-25T09:57:22.188Z"
+    },
+    "ygo|sd2-en021|1st": {
+      "usd": 0.74,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-zombie-madness/book-of-life-1st-edition-sd2-en021",
+      "fetchedAt": "2026-11-25T09:57:23.975Z"
+    },
+    "ygo|sd2-en022|1st": {
+      "usd": 0.26,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-zombie-madness/call-of-the-mummy-1st-edition-sd2-en022",
+      "fetchedAt": "2026-11-25T09:57:25.767Z"
+    },
+    "ygo|tlm-en037|1st": {
+      "usd": 5,
+      "url": "https://www.pricecharting.com/game/yugioh-the-lost-millennium/card-of-sanctity-1st-edition-tlm-en037",
+      "fetchedAt": "2026-11-25T09:57:27.817Z"
+    },
+    "ygo|mrd-073|1st": {
+      "usd": 4.8,
+      "url": "https://www.pricecharting.com/game/yugioh-metal-raiders/castle-of-dark-illusions-1st-edition-mrd-073",
+      "fetchedAt": "2026-11-25T09:57:29.547Z"
+    },
+    "ygo|mfc-081|unl": {
+      "usd": 0.74,
+      "url": "https://www.pricecharting.com/game/yugioh-magician%27s-force/cat%27s-ear-tribe-mfc-081",
+      "fetchedAt": "2026-11-25T09:57:31.591Z"
+    },
+    "ygo|ske-032|1st": {
+      "usd": 0.98,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-kaiba-evolution/change-of-heart-1st-edition-ske-032",
+      "fetchedAt": "2026-11-25T09:57:33.300Z"
+    },
+    "ygo|sd2-en028|1st": {
+      "usd": 0.24,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-zombie-madness/compulsory-evacuation-device-1st-edition-sd2-en028",
+      "fetchedAt": "2026-11-25T09:57:34.997Z"
+    },
+    "ygo|sd2-en020|1st": {
+      "usd": 1.16,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-zombie-madness/creature-swap-1st-edition-sd2-en020",
+      "fetchedAt": "2026-11-25T09:57:36.909Z"
+    },
+    "ygo|rds-en025|1st": {
+      "usd": 0.12,
+      "url": "https://www.pricecharting.com/game/yugioh-rise-of-destiny/creeping-doom-manta-1st-edition-rds-en025",
+      "fetchedAt": "2026-11-25T09:57:38.653Z"
+    },
+    "ygo|crv-en013|1st": {
+      "usd": 4.26,
+      "url": "https://www.pricecharting.com/game/yugioh-cybernetic-revolution/dark-catapulter-1st-edition-crv-en013",
+      "fetchedAt": "2026-11-25T09:57:40.471Z"
+    },
+    "ygo|mfc-083|unl": {
+      "usd": 0.23,
+      "url": "https://www.pricecharting.com/game/yugioh-magician%27s-force/dark-cat-with-white-tail-mfc-083",
+      "fetchedAt": "2026-11-25T09:57:42.276Z"
+    },
+    "ygo|sd2-en004|1st": {
+      "usd": 2.25,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-zombie-madness/dark-dust-spirit-1st-edition-sd2-en004",
+      "fetchedAt": "2026-11-25T09:57:44.027Z"
+    },
+    "ygo|sye-026|unl": {
+      "usd": 0.43,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-yugi-evolution/dark-hole-sye-026",
+      "fetchedAt": "2026-11-25T09:57:45.737Z"
+    },
+    "ygo|lon-046|unl": {
+      "usd": 2.05,
+      "url": "https://www.pricecharting.com/game/yugioh-labyrinth-of-nightmare/darklord-marie-lon-046",
+      "fetchedAt": "2026-11-25T09:57:47.584Z"
+    },
+    "ygo|mfc-019|unl": {
+      "usd": 0.75,
+      "url": "https://www.pricecharting.com/game/yugioh-magician%27s-force/dd-crazy-beast-mfc-019",
+      "fetchedAt": "2026-11-25T09:57:53.673Z"
+    },
+    "ygo|fet-en058|1st": {
+      "usd": 11.13,
+      "url": "https://www.pricecharting.com/game/yugioh-flaming-eternity/deck-devastation-virus-1st-edition-fet-en058",
+      "fetchedAt": "2026-11-25T09:57:55.534Z"
+    },
+    "ygo|sd2-en007|1st": {
+      "usd": 0.91,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-zombie-madness/despair-from-the-dark-1st-edition-sd2-en007",
+      "fetchedAt": "2026-11-25T09:57:57.236Z"
+    },
+    "ygo|ske-028|unl": {
+      "usd": 0.51,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-kaiba-evolution/de-spell-ske-028",
+      "fetchedAt": "2026-11-25T09:57:59.020Z"
+    },
+    "ygo|mfc-023|unl": {
+      "usd": 1.58,
+      "url": "https://www.pricecharting.com/game/yugioh-magician%27s-force/dimension-jar-mfc-023",
+      "fetchedAt": "2026-11-25T09:58:00.814Z"
+    },
+    "ygo|ast-028|1st": {
+      "usd": 0.25,
+      "url": "https://www.pricecharting.com/game/yugioh-ancient-sanctuary/disc-fighter-1st-edition-ast-028",
+      "fetchedAt": "2026-11-25T09:58:02.600Z"
+    },
+    "ygo|lon-101|1st": {
+      "usd": 0.3,
+      "url": "https://www.pricecharting.com/game/yugioh-labyrinth-of-nightmare/dragonic-attack-1st-edition-lon-101",
+      "fetchedAt": "2026-11-25T09:58:04.387Z"
+    },
+    "ygo|psv-078|unl": {
+      "usd": 0.11,
+      "url": "https://www.pricecharting.com/game/yugioh-pharaoh%27s-servant/drill-bug-psv-078",
+      "fetchedAt": "2026-11-25T09:58:06.074Z"
+    },
+    "ygo|sd2-en024|1st": {
+      "usd": 0.73,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-zombie-madness/dust-tornado-1st-edition-sd2-en024",
+      "fetchedAt": "2026-11-25T09:58:07.816Z"
+    },
+    "ygo|tlm-en001|1st": {
+      "usd": 0.79,
+      "url": "https://www.pricecharting.com/game/yugioh-the-lost-millennium/elemental-hero-avian-1st-edition-tlm-en001",
+      "fetchedAt": "2026-11-25T09:58:09.617Z"
+    },
+    "ygo|tlm-en004|1st": {
+      "usd": 0.94,
+      "url": "https://www.pricecharting.com/game/yugioh-the-lost-millennium/elemental-hero-sparkman-1st-edition-tlm-en004",
+      "fetchedAt": "2026-11-25T09:58:11.379Z"
+    },
+    "ygo|fet-en011|1st": {
+      "usd": 0.3,
+      "url": "https://www.pricecharting.com/game/yugioh-flaming-eternity/element-doom-1st-edition-fet-en011",
+      "fetchedAt": "2026-11-25T09:58:13.100Z"
+    },
+    "ygo|sod-en023|unl": {
+      "usd": 0.39,
+      "url": "https://www.pricecharting.com/game/yugioh-soul-of-the-duelist/element-dragon-sod-en023",
+      "fetchedAt": "2026-11-25T09:58:14.776Z"
+    },
+    "ygo|ast-074|1st": {
+      "usd": 1,
+      "url": "https://www.pricecharting.com/game/yugioh-ancient-sanctuary/elephant-statue-of-disaster-1st-edition-ast-074",
+      "fetchedAt": "2026-11-25T09:58:16.624Z"
+    },
+    "ygo|ioc-070|unl": {
+      "usd": 0.43,
+      "url": "https://www.pricecharting.com/game/yugioh-invasion-of-chaos/enraged-battle-ox-ioc-070",
+      "fetchedAt": "2026-11-25T09:58:18.422Z"
+    },
+    "ygo|ioc-020|unl": {
+      "usd": 0.25,
+      "url": "https://www.pricecharting.com/game/yugioh-invasion-of-chaos/fenrir-ioc-020",
+      "fetchedAt": "2026-11-25T09:58:20.223Z"
+    },
+    "ygo|psv-041|unl": {
+      "usd": 0.34,
+      "url": "https://www.pricecharting.com/game/yugioh-pharaoh%27s-servant/flame-champion-psv-041",
+      "fetchedAt": "2026-11-25T09:58:22.041Z"
+    },
+    "ygo|lod-022|unl": {
+      "usd": 0.22,
+      "url": "https://www.pricecharting.com/game/yugioh-legacy-of-darkness/frontier-wiseman-lod-022",
+      "fetchedAt": "2026-11-25T09:58:26.118Z"
+    },
+    "ygo|ioc-008|unl": {
+      "usd": 0.25,
+      "url": "https://www.pricecharting.com/game/yugioh-invasion-of-chaos/gale-lizard-ioc-008",
+      "fetchedAt": "2026-11-25T09:58:27.805Z"
+    },
+    "ygo|lon-070|unl": {
+      "usd": 0.24,
+      "url": "https://www.pricecharting.com/game/yugioh-labyrinth-of-nightmare/garuda-the-wind-spirit-lon-070",
+      "fetchedAt": "2026-11-25T09:58:29.669Z"
+    },
+    "ygo|sye-020|unl": {
+      "usd": 0.54,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-yugi-evolution/giant-rat-sye-020",
+      "fetchedAt": "2026-11-25T09:58:31.509Z"
+    },
+    "ygo|sd2-en015|1st": {
+      "usd": 1.23,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-zombie-madness/giant-trunade-1st-edition-sd2-en015",
+      "fetchedAt": "2026-11-25T09:58:33.839Z"
+    },
+    "ygo|sod-en004|1st": {
+      "usd": 0.31,
+      "url": "https://www.pricecharting.com/game/yugioh-soul-of-the-duelist/goblin-calligrapher-1st-edition-sod-en004",
+      "fetchedAt": "2026-11-25T09:58:35.644Z"
+    },
+    "ygo|ioc-066|unl": {
+      "usd": 0.19,
+      "url": "https://www.pricecharting.com/game/yugioh-invasion-of-chaos/gora-turtle-of-illusion-ioc-066",
+      "fetchedAt": "2026-11-25T09:58:37.444Z"
+    },
+    "ygo|sdp-040|unl": {
+      "usd": 5.67,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-pegasus/graceful-charity-sdp-040",
+      "fetchedAt": "2026-11-25T09:58:39.132Z"
+    },
+    "ygo|tlm-en021|1st": {
+      "usd": 0.18,
+      "url": "https://www.pricecharting.com/game/yugioh-the-lost-millennium/guardian-statue-1st-edition-tlm-en021",
+      "fetchedAt": "2026-11-25T09:58:43.217Z"
+    },
+    "ygo|rds-en018|1st": {
+      "usd": 0.22,
+      "url": "https://www.pricecharting.com/game/yugioh-rise-of-destiny/harpie-lady-2-1st-edition-rds-en018",
+      "fetchedAt": "2026-11-25T09:58:44.899Z"
+    },
+    "ygo|sd2-en019|1st": {
+      "usd": 2.99,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-zombie-madness/heavy-storm-1st-edition-sd2-en019",
+      "fetchedAt": "2026-11-25T09:58:46.753Z"
+    },
+    "ygo|mfc-022|unl": {
+      "usd": 0.38,
+      "url": "https://www.pricecharting.com/game/yugioh-magician%27s-force/helping-robo-for-combat-mfc-022",
+      "fetchedAt": "2026-11-25T09:58:48.602Z"
+    },
+    "ygo|mrl-024|1st": {
+      "usd": 0.96,
+      "url": "https://www.pricecharting.com/game/yugioh-magic-ruler/hiro%27s-shadow-scout-1st-edition-mrl-024",
+      "fetchedAt": "2026-11-25T09:58:50.418Z"
+    },
+    "ygo|ske-011|unl": {
+      "usd": 0.74,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-kaiba-evolution/hyozanryu-ske-011",
+      "fetchedAt": "2026-11-25T09:58:52.191Z"
+    },
+    "ygo|lon-042|unl": {
+      "usd": 0.53,
+      "url": "https://www.pricecharting.com/game/yugioh-labyrinth-of-nightmare/hysteric-fairy-lon-042",
+      "fetchedAt": "2026-11-25T09:58:53.892Z"
+    },
+    "ygo|ioc-019|unl": {
+      "usd": 0.5,
+      "url": "https://www.pricecharting.com/game/yugioh-invasion-of-chaos/inferno-ioc-019",
+      "fetchedAt": "2026-11-25T09:58:55.678Z"
+    },
+    "ygo|psv-095|unl": {
+      "usd": 0.24,
+      "url": "https://www.pricecharting.com/game/yugioh-pharaoh%27s-servant/island-turtle-psv-095",
+      "fetchedAt": "2026-11-25T09:58:57.410Z"
+    },
+    "ygo|ske-047|1st": {
+      "usd": 3.98,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-kaiba-evolution/jar-of-greed-1st-edition-ske-047",
+      "fetchedAt": "2026-11-25T09:58:59.120Z"
+    },
+    "ygo|ske-015|unl": {
+      "usd": 0.61,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-kaiba-evolution/kaiser-sea-horse-ske-015",
+      "fetchedAt": "2026-11-25T09:59:00.828Z"
+    },
+    "ygo|ske-015|1st": {
+      "usd": 1.82,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-kaiba-evolution/kaiser-sea-horse-1st-edition-ske-015",
+      "fetchedAt": "2026-11-25T09:59:00.828Z"
+    },
+    "ygo|sdj-013|unl": {
+      "usd": 0.4,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-joey/karate-man-sdj-013",
+      "fetchedAt": "2026-11-25T09:59:02.536Z"
+    },
+    "ygo|ast-082|1st": {
+      "usd": 3.03,
+      "url": "https://www.pricecharting.com/game/yugioh-ancient-sanctuary/king-of-the-swamp-1st-edition-ast-082",
+      "fetchedAt": "2026-11-25T09:59:04.344Z"
+    },
+    "ygo|sye-019|unl": {
+      "usd": 0.52,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-yugi-evolution/kuriboh-sye-019",
+      "fetchedAt": "2026-11-25T09:59:06.068Z"
+    },
+    "ygo|ast-030|1st": {
+      "usd": 3.47,
+      "url": "https://www.pricecharting.com/game/yugioh-ancient-sanctuary/lady-ninja-yae-1st-edition-ast-030",
+      "fetchedAt": "2026-11-25T09:59:07.906Z"
+    },
+    "ygo|ast-017|unl": {
+      "usd": 0.74,
+      "url": "https://www.pricecharting.com/game/yugioh-ancient-sanctuary/legendary-jujitsu-master-ast-017",
+      "fetchedAt": "2026-11-25T09:59:11.573Z"
+    },
+    "ygo|lod-003|unl": {
+      "usd": 0.37,
+      "url": "https://www.pricecharting.com/game/yugioh-legacy-of-darkness/lesser-fiend-lod-003",
+      "fetchedAt": "2026-11-25T09:59:13.348Z"
+    },
+    "ygo|ske-022|unl": {
+      "usd": 0.11,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-kaiba-evolution/mad-sword-beast-ske-022",
+      "fetchedAt": "2026-11-25T09:59:17.413Z"
+    },
+    "ygo|mfc-069|unl": {
+      "usd": 0.99,
+      "url": "https://www.pricecharting.com/game/yugioh-magician%27s-force/magical-marionette-mfc-069",
+      "fetchedAt": "2026-11-25T09:59:19.255Z"
+    },
+    "ygo|sd2-en026|1st": {
+      "usd": 0.96,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-zombie-madness/magic-jammer-1st-edition-sd2-en026",
+      "fetchedAt": "2026-11-25T09:59:23.755Z"
+    },
+    "ygo|sye-017|unl": {
+      "usd": 0.74,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-yugi-evolution/man-eater-bug-sye-017",
+      "fetchedAt": "2026-11-25T09:59:25.430Z"
+    },
+    "ygo|dcr-074|unl": {
+      "usd": 0.55,
+      "url": "https://www.pricecharting.com/game/yugioh-dark-crisis/metallizing-parasite-lunatite-dcr-074",
+      "fetchedAt": "2026-11-25T09:59:27.226Z"
+    },
+    "ygo|sod-en027|1st": {
+      "usd": 7.12,
+      "url": "https://www.pricecharting.com/game/yugioh-soul-of-the-duelist/mind-on-air-1st-edition-sod-en027",
+      "fetchedAt": "2026-11-25T09:59:31.659Z"
+    },
+    "ygo|ioc-064|unl": {
+      "usd": 0.21,
+      "url": "https://www.pricecharting.com/game/yugioh-invasion-of-chaos/molten-zombie-ioc-064",
+      "fetchedAt": "2026-11-25T09:59:33.473Z"
+    },
+    "ygo|psv-040|unl": {
+      "usd": 0.73,
+      "url": "https://www.pricecharting.com/game/yugioh-pharaoh%27s-servant/morphing-jar-psv-040",
+      "fetchedAt": "2026-11-25T09:59:35.209Z"
+    },
+    "ygo|ske-017|unl": {
+      "usd": 0.75,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-kaiba-evolution/mysterious-puppeteer-ske-017",
+      "fetchedAt": "2026-11-25T09:59:39.229Z"
+    },
+    "ygo|ske-021|unl": {
+      "usd": 0.63,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-kaiba-evolution/mystic-tomato-ske-021",
+      "fetchedAt": "2026-11-25T09:59:40.907Z"
+    },
+    "ygo|sod-en019|1st": {
+      "usd": 4.88,
+      "url": "https://www.pricecharting.com/game/yugioh-soul-of-the-duelist/ninja-grandmaster-sasuke-1st-edition-sod-en019",
+      "fetchedAt": "2026-11-25T09:59:42.711Z"
+    },
+    "ygo|sod-en030|unl": {
+      "usd": 1.26,
+      "url": "https://www.pricecharting.com/game/yugioh-soul-of-the-duelist/nobleman-eater-bug-sod-en030",
+      "fetchedAt": "2026-11-25T09:59:44.706Z"
+    },
+    "ygo|sd2-en016|1st": {
+      "usd": 1.2,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-zombie-madness/nobleman-of-crossout-1st-edition-sd2-en016",
+      "fetchedAt": "2026-11-25T09:59:46.466Z"
+    },
+    "ygo|ioc-002|unl": {
+      "usd": 0.64,
+      "url": "https://www.pricecharting.com/game/yugioh-invasion-of-chaos/ojama-black-ioc-002",
+      "fetchedAt": "2026-11-25T09:59:50.127Z"
+    },
+    "ygo|mfc-026|unl": {
+      "usd": 12.26,
+      "url": "https://www.pricecharting.com/game/yugioh-magician%27s-force/paladin-of-white-dragon-mfc-026",
+      "fetchedAt": "2026-11-25T09:59:51.942Z"
+    },
+    "ygo|lod-058|unl": {
+      "usd": 0.16,
+      "url": "https://www.pricecharting.com/game/yugioh-legacy-of-darkness/patrician-of-darkness-lod-058",
+      "fetchedAt": "2026-11-25T09:59:53.698Z"
+    },
+    "ygo|lod-058|1st": {
+      "usd": 1.22,
+      "url": "https://www.pricecharting.com/game/yugioh-legacy-of-darkness/patrician-of-darkness-1st-edition-lod-058",
+      "fetchedAt": "2026-11-25T09:59:53.698Z"
+    },
+    "ygo|sdj-022|unl": {
+      "usd": 1.07,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-joey/penguin-soldier-sdj-022",
+      "fetchedAt": "2026-11-25T09:59:55.451Z"
+    },
+    "ygo|ast-060|unl": {
+      "usd": 1.17,
+      "url": "https://www.pricecharting.com/game/yugioh-ancient-sanctuary/pharaoh%27s-servant-ast-060",
+      "fetchedAt": "2026-11-25T09:59:59.257Z"
+    },
+    "ygo|ast-026|unl": {
+      "usd": 0.12,
+      "url": "https://www.pricecharting.com/game/yugioh-ancient-sanctuary/piranha-army-ast-026",
+      "fetchedAt": "2026-11-25T10:00:00.994Z"
+    },
+    "ygo|sye-040|unl": {
+      "usd": 4.19,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-yugi-evolution/pot-of-greed-sye-040",
+      "fetchedAt": "2026-11-25T10:00:02.695Z"
+    },
+    "ygo|ioc-077|unl": {
+      "usd": 0.65,
+      "url": "https://www.pricecharting.com/game/yugioh-invasion-of-chaos/prickle-fairy-ioc-077",
+      "fetchedAt": "2026-11-25T10:00:08.996Z"
+    },
+    "ygo|pgd-026|unl": {
+      "usd": 1.99,
+      "url": "https://www.pricecharting.com/game/yugioh-pharaonic-guardian/pyramid-turtle-pgd-026",
+      "fetchedAt": "2026-11-25T10:00:10.948Z"
+    },
+    "ygo|sd2-en005|1st": {
+      "usd": 0.67,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-zombie-madness/pyramid-turtle-1st-edition-sd2-en005",
+      "fetchedAt": "2026-11-25T10:00:12.737Z"
+    },
+    "ygo|sod-en020|1st": {
+      "usd": 2.59,
+      "url": "https://www.pricecharting.com/game/yugioh-soul-of-the-duelist/rafflesia-seduction-1st-edition-sod-en020",
+      "fetchedAt": "2026-11-25T10:00:14.464Z"
+    },
+    "ygo|sdj-001|unl": {
+      "usd": 8.3,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-joey/red-eyes-black-dragon-sdj-001",
+      "fetchedAt": "2026-11-25T10:00:16.210Z"
+    },
+    "ygo|sd2-en012|1st": {
+      "usd": 0.22,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-zombie-madness/regenerating-mummy-1st-edition-sd2-en012",
+      "fetchedAt": "2026-11-25T10:00:17.915Z"
+    },
+    "ygo|ast-079|unl": {
+      "usd": 0.3,
+      "url": "https://www.pricecharting.com/game/yugioh-ancient-sanctuary/regenerating-mummy-ast-079",
+      "fetchedAt": "2026-11-25T10:00:19.993Z"
+    },
+    "ygo|sd2-en023|1st": {
+      "usd": 1.19,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-zombie-madness/reload-1st-edition-sd2-en023",
+      "fetchedAt": "2026-11-25T10:00:21.869Z"
+    },
+    "ygo|lon-006|unl": {
+      "usd": 5.85,
+      "url": "https://www.pricecharting.com/game/yugioh-labyrinth-of-nightmare/revival-jam-lon-006",
+      "fetchedAt": "2026-11-25T10:00:23.604Z"
+    },
+    "ygo|rds-en015|1st": {
+      "usd": 0.17,
+      "url": "https://www.pricecharting.com/game/yugioh-rise-of-destiny/roc-from-the-valley-of-haze-1st-edition-rds-en015",
+      "fetchedAt": "2026-11-25T10:00:27.457Z"
+    },
+    "ygo|ast-015|1st": {
+      "usd": 0.5,
+      "url": "https://www.pricecharting.com/game/yugioh-ancient-sanctuary/rocket-jumper-1st-edition-ast-015",
+      "fetchedAt": "2026-11-25T10:00:29.231Z"
+    },
+    "ygo|sdp-005|unl": {
+      "usd": 0.69,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-pegasus/rogue-doll-sdp-005",
+      "fetchedAt": "2026-11-25T10:00:31.067Z"
+    },
+    "ygo|ioc-069|unl": {
+      "usd": 0.49,
+      "url": "https://www.pricecharting.com/game/yugioh-invasion-of-chaos/sacred-crane-ioc-069",
+      "fetchedAt": "2026-11-25T10:00:32.837Z"
+    },
+    "ygo|mfc-013|unl": {
+      "usd": 0.25,
+      "url": "https://www.pricecharting.com/game/yugioh-magician%27s-force/second-goblin-mfc-013",
+      "fetchedAt": "2026-11-25T10:00:34.712Z"
+    },
+    "ygo|mrl-103|unl": {
+      "usd": 7.93,
+      "url": "https://www.pricecharting.com/game/yugioh-magic-ruler/serpent-night-dragon-mrl-103",
+      "fetchedAt": "2026-11-25T10:00:36.526Z"
+    },
+    "ygo|lod-006|unl": {
+      "usd": 0.27,
+      "url": "https://www.pricecharting.com/game/yugioh-legacy-of-darkness/skull-knight-lod-006",
+      "fetchedAt": "2026-11-25T10:00:40.474Z"
+    },
+    "ygo|ast-032|unl": {
+      "usd": 0.73,
+      "url": "https://www.pricecharting.com/game/yugioh-ancient-sanctuary/solar-flare-dragon-ast-032",
+      "fetchedAt": "2026-11-25T10:00:42.167Z"
+    },
+    "ygo|pgd-003|unl": {
+      "usd": 0.15,
+      "url": "https://www.pricecharting.com/game/yugioh-pharaonic-guardian/souleater-pgd-003",
+      "fetchedAt": "2026-11-25T10:00:43.932Z"
+    },
+    "ygo|lon-059|1st": {
+      "usd": 0.21,
+      "url": "https://www.pricecharting.com/game/yugioh-labyrinth-of-nightmare/spherous-lady-1st-edition-lon-059",
+      "fetchedAt": "2026-11-25T10:00:45.683Z"
+    },
+    "ygo|sd2-en006|1st": {
+      "usd": 1.37,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-zombie-madness/spirit-reaper-1st-edition-sd2-en006",
+      "fetchedAt": "2026-11-25T10:00:47.502Z"
+    },
+    "ygo|mrd-027|1st": {
+      "usd": 24.87,
+      "url": "https://www.pricecharting.com/game/yugioh-metal-raiders/suijin-1st-edition-mrd-027",
+      "fetchedAt": "2026-11-25T10:00:49.215Z"
+    },
+    "ygo|sye-039|unl": {
+      "usd": 0.5,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-yugi-evolution/swords-of-revealing-light-sye-039",
+      "fetchedAt": "2026-11-25T10:00:50.927Z"
+    },
+    "ygo|ast-063|unl": {
+      "usd": 0.25,
+      "url": "https://www.pricecharting.com/game/yugioh-ancient-sanctuary/theban-nightmare-ast-063",
+      "fetchedAt": "2026-11-25T10:00:52.690Z"
+    },
+    "ygo|lod-037|unl": {
+      "usd": 0.32,
+      "url": "https://www.pricecharting.com/game/yugioh-legacy-of-darkness/the-dragon-dwelling-in-the-cave-lod-037",
+      "fetchedAt": "2026-11-25T10:00:54.639Z"
+    },
+    "ygo|ske-031|unl": {
+      "usd": 0.65,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-kaiba-evolution/the-flute-of-summoning-dragon-ske-031",
+      "fetchedAt": "2026-11-25T10:00:56.356Z"
+    },
+    "ygo|ast-012|1st": {
+      "usd": 0.33,
+      "url": "https://www.pricecharting.com/game/yugioh-ancient-sanctuary/the-kick-man-1st-edition-ast-012",
+      "fetchedAt": "2026-11-25T10:00:58.240Z"
+    },
+    "ygo|sd2-en025|1st": {
+      "usd": 0.58,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-zombie-madness/torrential-tribute-1st-edition-sd2-en025",
+      "fetchedAt": "2026-11-25T10:01:02.254Z"
+    },
+    "ygo|ast-027|1st": {
+      "usd": 0.12,
+      "url": "https://www.pricecharting.com/game/yugioh-ancient-sanctuary/two-thousand-needles-1st-edition-ast-027",
+      "fetchedAt": "2026-11-25T10:01:08.056Z"
+    },
+    "ygo|sod-en005|unl": {
+      "usd": 0.52,
+      "url": "https://www.pricecharting.com/game/yugioh-soul-of-the-duelist/ultimate-insect-lv1-sod-en005",
+      "fetchedAt": "2026-11-25T10:01:09.953Z"
+    },
+    "ygo|rds-en007|1st": {
+      "usd": 10.52,
+      "url": "https://www.pricecharting.com/game/yugioh-rise-of-destiny/ultimate-insect-lv3-1st-edition-rds-en007",
+      "fetchedAt": "2026-11-25T10:01:11.808Z"
+    },
+    "ygo|sod-en028|1st": {
+      "usd": 0.32,
+      "url": "https://www.pricecharting.com/game/yugioh-soul-of-the-duelist/unshaven-angler-1st-edition-sod-en028",
+      "fetchedAt": "2026-11-25T10:01:13.596Z"
+    },
+    "ygo|sdy-003|unl": {
+      "usd": 0.82,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-yugi/winged-dragon-guardian-of-the-fortress-sdy-003",
+      "fetchedAt": "2026-11-25T10:01:15.295Z"
+    },
+    "ygo|lod-005|unl": {
+      "usd": 0.2,
+      "url": "https://www.pricecharting.com/game/yugioh-legacy-of-darkness/winged-minion-lod-005",
+      "fetchedAt": "2026-11-25T10:01:17.014Z"
+    },
+    "ygo|ske-020|unl": {
+      "usd": 0.49,
+      "url": "https://www.pricecharting.com/game/yugioh-starter-deck-kaiba-evolution/witch-of-the-black-forest-ske-020",
+      "fetchedAt": "2026-11-25T10:01:18.835Z"
+    },
+    "ygo|mfc-053|unl": {
+      "usd": 4.72,
+      "url": "https://www.pricecharting.com/game/yugioh-magician%27s-force/xz-tank-cannon-mfc-053",
+      "fetchedAt": "2026-11-25T10:01:20.580Z"
+    },
+    "ygo|rds-ense2|unl": {
+      "usd": 16.24,
+      "url": "https://www.pricecharting.com/game/yugioh-rise-of-destiny/dark-magician-girl-rds-ense2",
+      "fetchedAt": "2026-11-25T10:10:49.753Z"
+    },
+    "ygo|dr1-en188|unl": {
+      "usd": 0.18,
+      "url": "https://www.pricecharting.com/game/yugioh-dark-revelation-volume-1/dark-scorpion-chick-the-yellow-dr1-en188",
+      "fetchedAt": "2026-11-25T10:10:51.752Z"
+    },
+    "ygo|dlg1-en075|unl": {
+      "usd": 1.52,
+      "url": "https://www.pricecharting.com/game/yugioh-dark-legends/flying-kamakiri-1-dlg1-en075",
+      "fetchedAt": "2026-11-25T10:10:53.682Z"
+    },
+    "ygo|dr1-en011|unl": {
+      "usd": 0.25,
+      "url": "https://www.pricecharting.com/game/yugioh-dark-revelation-volume-1/gravekeeper%27s-vassal-dr1-en011",
+      "fetchedAt": "2026-11-25T10:10:55.611Z"
+    },
+    "ygo|ioc-se4|unl": {
+      "usd": 3.16,
+      "url": "https://www.pricecharting.com/game/yugioh-invasion-of-chaos/lava-golem-ioc-se4",
+      "fetchedAt": "2026-11-25T10:10:57.714Z"
+    },
+    "ygo|ioc-se2|unl": {
+      "usd": 2.75,
+      "url": "https://www.pricecharting.com/game/yugioh-invasion-of-chaos/magic-cylinder-ioc-se2",
+      "fetchedAt": "2026-11-25T10:11:01.602Z"
+    },
+    "ygo|dr3-en189|unl": {
+      "usd": 7.88,
+      "url": "https://www.pricecharting.com/game/yugioh-dark-revelation-volume-3/millennium-scorpion-dr3-en189",
+      "fetchedAt": "2026-11-25T10:11:03.522Z"
+    },
+    "ygo|ss02-ena14|1st": {
+      "usd": 0.23,
+      "url": "https://www.pricecharting.com/game/yugioh-speed-duel-starter-decks-duelists-of-tomorrow/mountain-ss02-ena14",
+      "fetchedAt": "2026-11-25T10:11:05.420Z",
+      "note": "No 1st Edition listing; unlimited price"
+    },
+    "ygo|sd4-en001|1st": {
+      "usd": 3.3,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-fury-from-the-deep/ocean-dragon-lord-neo-daedalus-sd4-en001",
+      "fetchedAt": "2026-11-25T10:11:07.415Z",
+      "note": "No 1st Edition listing; unlimited price"
+    },
+    "ygo|ep1-en005|unl": {
+      "usd": 0.5,
+      "url": "https://www.pricecharting.com/game/yugioh-exclusive-pack/peten-the-dark-clown-ep1-en005",
+      "fetchedAt": "2026-11-25T10:11:09.359Z"
+    },
+    "ygo|sd4-en018|1st": {
+      "usd": 4.28,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-fury-from-the-deep/pot-of-greed-sd4-en018",
+      "fetchedAt": "2026-11-25T10:11:11.344Z",
+      "note": "No 1st Edition listing; unlimited price"
+    },
+    "ygo|sd4-en017|1st": {
+      "usd": 0.5,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-fury-from-the-deep/premature-burial-sd4-en017",
+      "fetchedAt": "2026-11-25T10:11:13.592Z",
+      "note": "No 1st Edition listing; unlimited price"
+    },
+    "ygo|ioc-se3|unl": {
+      "usd": 5.15,
+      "url": "https://www.pricecharting.com/game/yugioh-invasion-of-chaos/ring-of-destruction-ioc-se3",
+      "fetchedAt": "2026-11-25T10:11:15.742Z"
+    },
+    "ygo|dr1-en235|unl": {
+      "usd": 7.99,
+      "url": "https://www.pricecharting.com/game/yugioh-dark-revelation-volume-1/skull-archfiend-of-lightning-dr1-en235",
+      "fetchedAt": "2026-11-25T10:11:17.684Z"
+    },
+    "ygo|sd4-en029|1st": {
+      "usd": 0.56,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-fury-from-the-deep/tornado-wall-sd4-en029",
+      "fetchedAt": "2026-11-25T10:11:19.597Z",
+      "note": "No 1st Edition listing; unlimited price"
+    },
+    "ygo|ct1-en001|unl": {
+      "usd": 3.05,
+      "url": "https://www.pricecharting.com/game/yugioh-collectible-tins-2004/total-defense-shogun-ct1-en001",
+      "fetchedAt": "2026-11-25T10:11:21.572Z"
+    },
+    "ygo|sd4-en007|1st": {
+      "usd": 8.47,
+      "url": "https://www.pricecharting.com/game/yugioh-structure-deck-fury-from-the-deep/tribe-infecting-virus-sd4-en007",
+      "fetchedAt": "2026-11-25T10:11:23.621Z",
+      "note": "No 1st Edition listing; unlimited price"
+    },
+    "ygo|dr1-en066|unl": {
+      "usd": 0.18,
+      "url": "https://www.pricecharting.com/game/yugioh-dark-revelation-volume-1/zombie-tiger-dr1-en066",
+      "fetchedAt": "2026-11-25T10:11:25.504Z"
+    }
+  }
+}

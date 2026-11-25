@@ -1,49 +1,153 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="bg-[#090a0f]">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Browse a personal trading card collection and its marketplace prices."
-    />
-    <title>Vault. — Trading Card Collection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Local Cards</title>
+    <meta name="description" content="Browse a personal trading card collection and its marketplace prices." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      window.cardsDefaultReady = (async () => {
-        const collectionKey = "localcards.collection.v2";
-        const legacyKey = "localcards.collection.v1";
-        const existingCollection = localStorage.getItem(collectionKey);
-
-        try {
-          const response = await fetch("./cards.json");
-          if (!response.ok) throw new Error(`Could not load cards.json (${response.status})`);
-          const cards = await response.json();
-          if (!Array.isArray(cards) || cards.length === 0) throw new Error("cards.json contains no cards");
-          if (existingCollection) {
-            const saved = JSON.parse(existingCollection);
-            const isDefaultCollection =
-              saved.filename === "Demo collection" ||
-              saved.filename === "My card collection";
-            if (!isDefaultCollection) return;
-          } else if (localStorage.getItem(legacyKey)) {
-            return;
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Space Grotesk", "sans-serif"], mono: ["DM Mono", "monospace"] }
           }
-          localStorage.setItem(collectionKey, JSON.stringify({
-            cards,
-            filename: "My card collection"
-          }));
-        } catch (error) {
-          console.warn(error);
         }
-      })();
+      };
     </script>
-    <script type="module">
-      await window.cardsDefaultReady;
-      await import("./assets/index-Cd628q77.js");
-    </script>
-    <link rel="stylesheet" crossorigin href="/cards/assets/index-Cz6mAhzd.css">
   </head>
-  <body>
-    <div id="root"></div>
+  <body class="min-h-screen bg-[radial-gradient(circle_at_8%_-10%,rgba(139,92,246,.2),transparent_34rem),radial-gradient(circle_at_100%_12%,rgba(96,165,250,.12),transparent_30rem),#090a0f] font-sans text-slate-100">
+    <main class="mx-auto max-w-[1320px] px-4 py-8 sm:px-7 sm:py-10">
+      <header class="flex flex-col justify-between gap-7 pb-12 sm:flex-row sm:items-end">
+        <div>
+          <p class="mb-3 font-mono text-[11px] font-medium uppercase tracking-[.08em] text-violet-300">Personal collection / MTG · Pokemon · Yugioh</p>
+          <h1 class="text-6xl font-semibold leading-[.82] tracking-[-.08em] text-slate-100 sm:text-8xl lg:text-9xl">Local <span class="text-rose-400 drop-shadow-[0_0_35px_rgba(251,113,133,.18)]">Cards</span></h1>
+          <p class="mt-7 max-w-md leading-relaxed text-slate-400">Your collection, one clean view. Browse cards, see what they are worth, and find the next one faster.</p>
+        </div>
+        <div class="flex flex-wrap gap-2 sm:justify-end">
+          <button id="open-scanner" class="rounded-xl border border-lime-300 bg-lime-300 px-4 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-lime-400/10 transition hover:-translate-y-0.5" type="button">◉ Scan cards</button>
+          <button id="refresh-prices" class="rounded-xl border border-transparent bg-gradient-to-br from-violet-600 to-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:-translate-y-0.5 hover:border-violet-300 disabled:cursor-not-allowed disabled:opacity-40" type="button">↻ Update prices</button>
+        </div>
+      </header>
+
+      <section id="stats" class="mb-6 grid grid-cols-2 overflow-hidden rounded-2xl border border-slate-800 bg-slate-800 shadow-2xl shadow-black/30 sm:grid-cols-4" aria-label="Collection summary">
+        <div class="flex min-h-[120px] flex-col justify-between bg-slate-900/95 p-5"><span class="font-mono text-[11px] uppercase tracking-[.08em] text-slate-400">Cards</span><strong id="card-count" class="text-3xl font-semibold tracking-tight text-white">—</strong></div>
+        <div class="flex min-h-[120px] flex-col justify-between bg-slate-900/95 p-5"><span class="font-mono text-[11px] uppercase tracking-[.08em] text-slate-400">Copies</span><strong id="copy-count" class="text-3xl font-semibold tracking-tight text-white">—</strong></div>
+        <div class="flex min-h-[120px] flex-col justify-between bg-slate-900/95 p-5"><span class="font-mono text-[11px] uppercase tracking-[.08em] text-slate-400">Collection value</span><strong id="collection-value" class="text-3xl font-semibold tracking-tight text-white">—</strong></div>
+        <div class="flex min-h-[120px] flex-col justify-between bg-slate-900/95 p-5"><span class="font-mono text-[11px] uppercase tracking-[.08em] text-slate-400">Sets</span><strong id="set-count" class="text-3xl font-semibold tracking-tight text-white">—</strong></div>
+      </section>
+
+      <section id="upload-zone" class="mb-6 flex flex-col justify-between gap-5 rounded-2xl border border-dashed border-slate-700 bg-slate-900/70 p-5 shadow-xl shadow-black/10 transition sm:flex-row sm:items-center" aria-label="Load collection export">
+        <input id="file-input" type="file" accept=".csv,.json,text/csv,application/json" hidden />
+        <div><strong class="block text-sm text-slate-200">Drop your collection CSV here</strong><span id="file-name" class="mt-1 block text-xs text-slate-500">Your collection is saved in this browser after upload.</span></div>
+        <div class="flex flex-wrap gap-2">
+          <button id="choose-file" class="rounded-xl border border-lime-300 bg-lime-300 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:-translate-y-0.5 hover:bg-lime-200" type="button">Import CSV or JSON</button>
+          <button id="export-json" class="rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:-translate-y-0.5 hover:border-violet-400" type="button" disabled>Export JSON</button>
+          <button id="export-csv" class="rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:-translate-y-0.5 hover:border-violet-400" type="button" disabled>Export CSV</button>
+          <button id="remove-collection" class="rounded-xl border border-pink-400/20 bg-pink-900/20 px-4 py-3 text-sm font-semibold text-pink-300 transition hover:-translate-y-0.5 hover:bg-pink-900/35 disabled:cursor-not-allowed disabled:opacity-40" type="button" disabled>Remove saved collection</button>
+        </div>
+      </section>
+
+      <nav id="folder-nav" class="mb-6 flex flex-wrap gap-2" aria-label="Collection folders"></nav>
+
+      <section class="mb-5 grid gap-3 md:grid-cols-[1fr_190px_190px]" aria-label="Card filters">
+        <label class="relative"><span class="sr-only">Search cards</span><input id="search" class="w-full rounded-xl border border-slate-800 bg-slate-900/90 px-4 py-3.5 pr-12 text-sm text-slate-100 outline-none placeholder:text-slate-600 focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10" type="search" placeholder="Search name, set, or number…" autocomplete="off" /><span class="pointer-events-none absolute right-4 top-2.5 text-2xl text-slate-500">⌕</span></label>
+        <label><span class="sr-only">Filter by set</span><select id="set-filter" class="w-full rounded-xl border border-slate-800 bg-slate-900/90 px-4 py-3.5 text-sm text-slate-100 outline-none focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"><option value="">All sets</option></select></label>
+        <label><span class="sr-only">Sort cards</span><select id="sort" class="w-full rounded-xl border border-slate-800 bg-slate-900/90 px-4 py-3.5 text-sm text-slate-100 outline-none focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"><option value="name">Name A–Z</option><option value="value">Value high–low</option><option value="quantity">Quantity high–low</option><option value="set">Set A–Z</option></select></label>
+      </section>
+
+      <div class="mb-4 flex justify-between gap-4 font-mono text-[11px] uppercase tracking-[.08em] text-slate-500"><span id="results-count">Drop a CSV export to load your collection</span><span id="price-status" class="text-right"></span></div>
+      <section id="card-grid" class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6" aria-live="polite"></section>
+      <p id="empty-state" hidden class="py-16 text-center text-slate-500">No cards match those filters.</p>
+      <p id="error-state" hidden class="py-16 text-center text-rose-300"></p>
+    </main>
+
+    <dialog id="scanner-dialog" class="max-h-[94vh] w-[min(1000px,calc(100%-16px))] overflow-y-auto overscroll-contain rounded-2xl border border-slate-800 bg-slate-950 p-0 text-slate-100 shadow-2xl shadow-black/70 backdrop:bg-black/80">
+      <button id="close-scanner" class="sticky top-2 z-20 ml-auto mr-3 -mb-8 block h-8 w-8 rounded-full border border-slate-600 bg-slate-900/90 text-2xl leading-none text-slate-200" type="button" aria-label="Close scanner">×</button>
+      <div class="grid md:grid-cols-[1fr_380px]">
+        <div class="relative h-[52vh] overflow-hidden bg-black md:h-[min(78vh,680px)]">
+          <video id="scanner-video" class="h-full w-full object-cover" autoplay playsinline muted></video>
+          <div id="scanner-guide" class="pointer-events-none absolute left-1/2 top-[46%] aspect-[63/88] h-[78%] -translate-x-1/2 -translate-y-1/2 rounded-[4.5%/3.2%] border-2 border-lime-300/90 shadow-[0_0_0_9999px_rgba(0,0,0,.45)]">
+            <div class="absolute inset-x-[4%] top-[2.5%] h-[8.5%] rounded border border-dashed border-lime-300/40"></div>
+          </div>
+          <p id="scanner-status" class="absolute inset-x-3 bottom-3 rounded-xl bg-black/75 px-3 py-2 text-center text-sm text-slate-100" aria-live="polite">Starting camera…</p>
+        </div>
+        <div class="space-y-4 p-4 sm:p-5">
+          <div>
+            <h2 class="text-xl font-semibold">Scan cards</h2>
+            <p class="mt-1 text-xs text-slate-400">Fill the frame with the card, name at the top. It scans automatically; tap the right printing to add it.</p>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs text-slate-400">
+            <label class="col-span-2">Game
+              <select id="scan-game" class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100"><option value="mtg">Magic: The Gathering</option><option value="pok">Pokémon</option><option value="ygo">Yu-Gi-Oh!</option></select>
+            </label>
+            <label>Printing
+              <select id="scan-printing" class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100"></select>
+            </label>
+            <label>Condition
+              <select id="scan-condition" class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100"></select>
+            </label>
+            <label>Language
+              <input id="scan-language" maxlength="16" class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100" />
+            </label>
+            <label>Folder
+              <input id="scan-folder" maxlength="120" class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100" />
+            </label>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button id="scan-auto" class="rounded-xl border border-lime-300 bg-lime-300 px-3 py-2 text-sm font-semibold text-slate-950" type="button" aria-pressed="true">Auto-scan on</button>
+            <button id="scan-now" class="rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-sm font-semibold text-slate-200 hover:border-lime-300" type="button">Scan now</button>
+            <button id="scan-photo" class="rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-sm font-semibold text-slate-200 hover:border-lime-300" type="button">Use a photo</button>
+            <input id="scanner-photo" type="file" accept="image/*" capture="environment" hidden />
+          </div>
+          <form id="scan-search-form" class="flex gap-2">
+            <input id="scan-search" class="min-w-0 flex-1 rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100" placeholder="Or type a name or set code…" autocomplete="off" />
+            <button class="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm font-semibold text-slate-200" type="submit">Find</button>
+          </form>
+          <div id="scan-results" class="space-y-2"></div>
+          <div id="scan-session"></div>
+          <details class="rounded-xl border border-slate-800 bg-slate-900/60 p-3">
+            <summary class="cursor-pointer text-sm text-slate-400">Card not found? Add it by hand</summary>
+            <form id="manual-card-form" class="mt-3 space-y-3">
+              <label class="block text-xs text-slate-400">Game *
+                <select name="game" required class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100">
+                  <option value="mtg">Magic: The Gathering</option><option value="pok">Pokémon</option><option value="ygo">Yu-Gi-Oh!</option><option value="onepiece">One Piece</option><option value="lorcana">Disney Lorcana</option><option value="other">Other</option>
+                </select>
+              </label>
+              <label class="block text-xs text-slate-400">Card name *
+                <input name="name" required maxlength="160" class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100" />
+              </label>
+              <div class="grid grid-cols-2 gap-2">
+                <label class="text-xs text-slate-400">Set
+                  <input name="set" maxlength="120" class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100" />
+                </label>
+                <label class="text-xs text-slate-400">Set code
+                  <input name="setCode" maxlength="32" class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100" />
+                </label>
+                <label class="text-xs text-slate-400">Collector number
+                  <input name="number" maxlength="32" class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100" />
+                </label>
+                <label class="text-xs text-slate-400">Rarity
+                  <input name="rarity" maxlength="64" class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100" />
+                </label>
+              </div>
+              <p class="text-[11px] text-slate-500">Printing, condition, language and folder come from the settings above.</p>
+              <button type="submit" class="w-full rounded-lg bg-lime-300 px-3 py-2.5 text-sm font-semibold text-slate-950">Add card</button>
+            </form>
+          </details>
+        </div>
+      </div>
+    </dialog>
+
+<dialog id="card-dialog" class="max-h-[90vh] w-[min(680px,calc(100%-28px))] overflow-y-auto overscroll-contain rounded-2xl border border-slate-800 bg-slate-900 p-0 text-slate-100 shadow-2xl shadow-black/70 backdrop:bg-black/80">
+      <button id="close-dialog" class="sticky top-2 z-20 ml-auto mr-3 -mb-8 block h-8 w-8 rounded-full border border-slate-600 bg-slate-900/90 text-2xl leading-none text-slate-200" type="button" aria-label="Close card details">×</button>
+      <div id="dialog-content"></div>
+    </dialog>
+    <script src="src/card-model.js"></script>
+    <script src="src/app.js"></script>
+    <script src="src/scanner.js"></script>
   </body>
 </html>

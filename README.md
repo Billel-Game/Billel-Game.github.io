@@ -49,17 +49,27 @@ Then open your browser to `http://localhost:8000` (or whatever port is shown)
 
 ```
 portfolio/
-├── index.html          # Main home page
-├── projects.html       # Projects page
-├── components.js       # Header and footer components
-└── README.md          # This file
+├── index.html                  # Main home page
+├── projects.html              # Projects and games page
+├── cv.html                    # CV page
+├── assets/
+│   ├── js/                    # Shared portfolio scripts
+│   └── models/               # Portfolio 3D models
+├── cards/                     # Trading card collection site
+│   ├── src/                   # Original readable card-site source
+│   ├── assets/               # Built card-site assets
+│   ├── data/                 # Default CSV and JSON collections
+│   └── scripts/              # Collection conversion tools
+├── Projects/                 # Independent project websites and media
+├── ValorantTracker/          # Valorant tracker project
+└── README.md
 ```
 
 ## Customization
 
 ### Update Your Information
 
-1. **Header/Footer** - Edit in `components.js`:
+1. **Header/Footer** - Edit in `assets/js/components.js`:
    - Change "Game Developer" to your name
    - Update the footer copyright
 
